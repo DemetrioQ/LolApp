@@ -139,4 +139,7 @@
       <Name>LolApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\trophy.png" />
+  </ItemGroup>
 </Project>

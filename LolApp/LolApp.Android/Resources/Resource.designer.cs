@@ -11025,6 +11025,9 @@ namespace LolApp.Droid
 			// aapt resource value: 0x7F070079
 			public const int tooltip_frame_light = 2131165305;
 			
+			// aapt resource value: 0x7F07007A
+			public const int trophy = 2131165306;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

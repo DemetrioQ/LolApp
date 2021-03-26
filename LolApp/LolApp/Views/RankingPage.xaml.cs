@@ -8,9 +8,9 @@ using Xamarin.Forms;
 
 namespace LolApp.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class RankingPage : ContentPage
     {
-        public MainPage()
+        public RankingPage()
         {
             InitializeComponent();
         }

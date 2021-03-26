@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LolApp.Views.RankingPage">
+    
+    <ContentPage.Resources>
+        <Style x:Key="AllText" TargetType="Label">
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
+        <Style x:Key="Header" TargetType="Label" BasedOn="{StaticResource AllText}">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <StackLayout Spacing="0">
+        <Label Text="Na Ranking" HorizontalOptions="Center" Style="{StaticResource Header}"></Label>
+        <Picker SelectedItem="{Binding Queue}" Title="Queue">
+            <Picker.Items>
+                <x:String>RANKED_SOLO_5x5</x:String>
+                <x:String>RANKED_FLEX_SR</x:String>
+                <x:String>RANKED_FLEX_TT</x:String>
+            </Picker.Items>
+        </Picker>
+        <Picker SelectedItem="{Binding Tier}" Title="Tier" >
+            <Picker.Items>
+                <x:String>IRON</x:String>
+                <x:String>BRONZE</x:String>
+                <x:String>SILVER</x:String>
+                <x:String>GOLD</x:String>
+                <x:String>PLATINUM</x:String>
+                <x:String>DIAMOND</x:String>
+                <x:String>MASTER</x:String>
+                <x:String>GRANDMASTER</x:String>
+                <x:String>CHALLENGER</x:String>
+            </Picker.Items>
+        </Picker>
+        <Picker SelectedItem="{Binding Division}" Title="Division" >
+            <Picker.Items>
+                <x:String>I</x:String>
+                <x:String>II</x:String>
+                <x:String>III</x:String>
+                <x:String>IV</x:String>
+            </Picker.Items>
+        </Picker>
+        <Button Text="Get Ranking" Command="{Binding GetCommand}"></Button>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
+
+        <ListView
+        ItemsSource="{Binding Ranking}"
+        IsVisible="{Binding NotBusy}"
+        HasUnevenRows="True"
+        SeparatorVisibility="None">
+            <ListView.Header>
+                <Grid ColumnDefinitions="150,*,*" Margin="0,0,0,10">
+                    <Label Text="Summoner" Grid.Column="0" Style="{StaticResource Header}" />
+                    <Label Text="Win/Losses" Grid.Column="1" Style="{StaticResource Header}" />
+                    <Label Text="Points" Grid.Column="2" Style="{StaticResource Header}"/>
+                </Grid>
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid ColumnDefinitions="150,*,*">
+                            <Label Text="{Binding SummonerName}" Style="{StaticResource AllText}" Grid.Column="0"/>
+                            <Label Style="{StaticResource AllText}" Grid.Column="1">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{} {0}/{1}">
+                                        <Binding Path="Wins" />
+                                        <Binding Path="Losses" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                            <Label Text="{Binding LeaguePoints}" Style="{StaticResource AllText}" Grid.Column="2"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
+
+</ContentPage>

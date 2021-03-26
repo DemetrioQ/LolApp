@@ -1,4 +1,6 @@
-﻿using LolApp.Views;
+﻿using LolApp.Services;
+using LolApp.ViewModels;
+using LolApp.Views;
 using Prism;
 using Prism.Ioc;
 using Prism.Unity;
@@ -13,13 +15,15 @@ namespace LolApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync($"/{Pages.NavigationPage}/{Pages.MainPage}");   
+            await NavigationService.NavigateAsync($"/{Pages.MainTabbedPage}");   
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<NavigationPage>(Pages.NavigationPage);
-            containerRegistry.RegisterForNavigation<MainPage>(Pages.MainPage);
+            containerRegistry.Register<ISerializerService, SerializerService>();
+            containerRegistry.Register<IRankingApiService, RankingApiService>();
+            containerRegistry.RegisterForNavigation<MainTabbedPage>(Pages.MainTabbedPage);
+            containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(Pages.RankingPage);
 
         }
     }

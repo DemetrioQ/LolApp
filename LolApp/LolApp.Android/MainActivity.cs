@@ -33,14 +33,14 @@ namespace LolApp.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-
-    }
-    public class AndroidInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(IContainerRegistry containerRegistry)
+        public class AndroidInitializer : IPlatformInitializer
         {
+            public void RegisterTypes(IContainerRegistry containerRegistry)
+            {
 
+            }
         }
+
     }
+   
 }

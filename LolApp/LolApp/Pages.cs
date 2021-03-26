@@ -6,7 +6,7 @@ namespace LolApp
 {
     public static class Pages
     {
-        public readonly static string NavigationPage = "NavigationBar";
-        public readonly static string MainPage = "Main";
+        public readonly static string RankingPage = "Ranking";
+        public readonly static string MainTabbedPage = "Main"; 
     }
 }

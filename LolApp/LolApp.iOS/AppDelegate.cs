@@ -29,13 +29,15 @@ namespace LolApp.iOS
 
             return base.FinishedLaunching(app, options);
         }
-    }
 
-    public class IosInitializer : IPlatformInitializer
-    {
-        public void RegisterTypes(IContainerRegistry containerRegistry)
+        public class IosInitializer : IPlatformInitializer
         {
+            public void RegisterTypes(IContainerRegistry containerRegistry)
+            {
 
+            }
         }
     }
+
+   
 }
