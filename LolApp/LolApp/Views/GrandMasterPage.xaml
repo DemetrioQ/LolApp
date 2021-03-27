@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LolApp.Views.GrandMasterPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="First GranMaster"  FontSize="50" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" ></Label>
+            <Label Text="{Binding entries.SummonerName}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

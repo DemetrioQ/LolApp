@@ -9,5 +9,7 @@ namespace LolApp
         public readonly static string SummonerPage = "Summoner";
         public readonly static string RankingPage = "Ranking";
         public readonly static string MainTabbedPage = "Main"; 
+        public readonly static string GrandMasterPage = "GrandMaster";
+
     }
 }
