@@ -20,10 +20,12 @@ namespace LolApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<ISummonerApiService, SummonerApiService>();
             containerRegistry.Register<ISerializerService, SerializerService>();
             containerRegistry.Register<IRankingApiService, RankingApiService>();
             containerRegistry.RegisterForNavigation<MainTabbedPage>(Pages.MainTabbedPage);
             containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(Pages.RankingPage);
+            containerRegistry.RegisterForNavigation<SummonerPage, SummonerViewModel>(Pages.SummonerPage);
 
         }
     }

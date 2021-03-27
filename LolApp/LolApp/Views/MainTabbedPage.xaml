@@ -10,7 +10,7 @@
             >
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
-        <ContentPage Title="Tab 1" />
+        <local:SummonerPage Title="Summoner" IconImageSource="man"/>
         <local:RankingPage Title="Ranking" IconImageSource="trophy"/>
         <ContentPage Title="Tab 3" />
     </TabbedPage.Children>
