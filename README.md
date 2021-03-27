@@ -1,4 +1,9 @@
 # LolApp
 
+This League Of Legends (LOL) App is a sample of how we can start to use Prism as a framework for .NET mobile applications. This project is sctructured with MVVM pattern and we call different riot games apis based in the mentioned framework.
+
 # Ranking Page
 ![image](https://user-images.githubusercontent.com/52639107/112684213-115d0e00-8e49-11eb-80e9-8fbcef36558a.png)
+
+# Summoner Page
+![screenshot-2021-03-26_21 13 13 24](https://user-images.githubusercontent.com/52285339/112706057-1eddbc80-8e78-11eb-845a-55b382d5efa9.png)
