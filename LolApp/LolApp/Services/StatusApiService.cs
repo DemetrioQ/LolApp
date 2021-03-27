@@ -1,5 +1,4 @@
-﻿using LolApp.Helpers;
-using LolApp.Models;
+﻿using LolApp.Models;
 using LolApp.Services;
 using Refit;
 using System;
@@ -16,12 +15,12 @@ namespace LolApp.Services
     {
         public async Task<Status> GetStatusAsync()
         {
-            string apiKey = Secrets.ApiKey;
+
             Status status = null;
 
-            var refitClient = RestService.For<IStatusApi>("https://la1.api.riotgames.com/lol/league/v4/grandmasterleagues/by-queue");
+            var refitClient = RestService.For<IStatusApi>(Config.LanStatusApiUrl);
 
-            var statusResponse = await refitClient.GetStatusAsync(apiKey);
+            var statusResponse = await refitClient.GetStatusAsync(Config.ApiKey);
             if (statusResponse.IsSuccessStatusCode)
             {
                 status = JsonSerializer.Deserialize<Status>(await statusResponse.Content.ReadAsStringAsync());

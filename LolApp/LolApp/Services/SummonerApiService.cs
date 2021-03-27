@@ -1,5 +1,4 @@
-﻿using LolApp.Helpers;
-using LolApp.Models;
+﻿using LolApp.Models;
 using Microsoft.AspNetCore.DataProtection;
 using Newtonsoft.Json;
 using Refit;
@@ -13,7 +12,7 @@ namespace LolApp.Services
 {
     public class SummonerApiService : ISummonerApiService
     {
-        public const string ApiKey = Secrets.ApiKey;
+        public const string ApiKey = Config.ApiKey;
         ISerializerService serializerService = new SerializerService();
 
         public async Task<Summoner> GetSummonerAsync(string summonerName)
@@ -21,7 +20,7 @@ namespace LolApp.Services
             Summoner summ = null;
 
 
-            var refitClient = RestService.For<ISummonerApi>("https://la1.api.riotgames.com");
+            var refitClient = RestService.For<ISummonerApi>(Config.LanSummonerApiUrl);
 
 
 

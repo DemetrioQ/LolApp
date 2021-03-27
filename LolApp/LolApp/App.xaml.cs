@@ -15,19 +15,19 @@ namespace LolApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync($"/{Pages.MainTabbedPage}");   
+            await NavigationService.NavigateAsync($"/{Config.MainTabbedPage}");   
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<ISummonerApiService, SummonerApiService>();
-            containerRegistry.Register<ISerializerService, SerializerService>();
             containerRegistry.Register<IRankingApiService, RankingApiService>();
             containerRegistry.Register<IStatusApiService, StatusApiService>();
-            containerRegistry.RegisterForNavigation<MainTabbedPage>(Pages.MainTabbedPage);
-            containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(Pages.RankingPage);
-            containerRegistry.RegisterForNavigation<SummonerPage, SummonerViewModel>(Pages.SummonerPage);
-            containerRegistry.RegisterForNavigation<GrandMasterPage, GrandMasterViewModel>(Pages.GrandMasterPage);
+            containerRegistry.Register<ISerializerService, SerializerService>();
+            containerRegistry.RegisterForNavigation<MainTabbedPage>(Config.MainTabbedPage);
+            containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(Config.RankingPage);
+            containerRegistry.RegisterForNavigation<SummonerPage, SummonerViewModel>(Config.SummonerPage);
+            containerRegistry.RegisterForNavigation<GrandMasterPage, GrandMasterViewModel>(Config.GrandMasterPage);
 
 
         }

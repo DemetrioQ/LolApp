@@ -50,7 +50,7 @@ namespace LolApp.ViewModels
             else
             {
                 // Alert
-                await App.Current.MainPage.DisplayAlert("No connection :( ", "please try again when your are conected.", "Ok");
+                await AlertService.DisplayAlertAsync("No connection :( ", "please try again when your are conected.", "Ok", null);
             }
 
         }

@@ -75,10 +75,7 @@ namespace LolApp.ViewModels
                 IsBusy = true;
                 if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
-                    if (Tier == "CHALLENGER")
-                    {
-                        Division = "I";
-                    }
+                   
                     Ranking = await _rankingApiService.GetRankingAync(Queue, Tier, Division);
                 }
                 else

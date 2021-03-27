@@ -1,5 +1,4 @@
-﻿using LolApp.Helpers;
-using LolApp.Models;
+﻿using LolApp.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -13,24 +12,34 @@ namespace LolApp.Services
 
     public class RankingApiService : IRankingApiService
     {
-        public const string ApiKey = Secrets.ApiKey;
-        ISerializerService serializerService = new SerializerService();
+        ISerializerService SerializerService;
+        public RankingApiService(ISerializerService serializerService)
+        {
+            SerializerService = serializerService;
+        }
 
         public async Task<ObservableCollection<Ranking>> GetRankingAync(string queue, string tier, string division)
         {
 
+            if (tier == "CHALLENGER" || tier == "GRANDMASTER" || tier == "MASTER")
+            {
+                division = "I";
+            }
+
             ObservableCollection<Ranking> ranking = null;
 
-            var refitClient = RestService.For<IRankingApi>("https://na1.api.riotgames.com/lol/league-exp/v4/entries");
+            var refitClient = RestService.For<IRankingApi>(Config.NaRankingApiUrl);
 
-            var rankingResponse = await refitClient.GetRankingAync(queue, tier, division, ApiKey);
+            var rankingResponse = await refitClient.GetRankingAync(queue, tier, division, Config.ApiKey);
 
             if (rankingResponse.IsSuccessStatusCode)
             {
                 var jsonRanking = await rankingResponse.Content.ReadAsStringAsync();
-                ranking = serializerService.Deserialize<ObservableCollection<Ranking>>(jsonRanking);
+                ranking = SerializerService.Deserialize<ObservableCollection<Ranking>>(jsonRanking);
                 ranking = new ObservableCollection<Ranking>(ranking.OrderByDescending(x => x.LeaguePoints));
             }
+
+
 
             return ranking;
         }
