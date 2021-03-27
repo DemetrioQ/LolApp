@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="First GranMaster"  FontSize="50" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" ></Label>
-            <Label Text="{Binding entries.SummonerName}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black"></Label>
+            <Label Text="{Binding Entries.SummonerName}" FontSize="30" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
