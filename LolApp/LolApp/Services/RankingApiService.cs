@@ -39,8 +39,6 @@ namespace LolApp.Services
                 ranking = new ObservableCollection<Ranking>(ranking.OrderByDescending(x => x.LeaguePoints));
             }
 
-
-
             return ranking;
         }
     }

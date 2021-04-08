@@ -11,7 +11,7 @@ namespace LolApp.Services
     public interface ISummonerApi
     {
 
-        [Get("/lol/summoner/v4/summoners/by-name/{summonerName}?api_key={key}")]
-        Task<HttpResponseMessage> GetSummonerAsync(string summonerName, string key);
+        [Get("/by-name/{summonerName}?api_key={key}")]
+        Task<HttpResponseMessage> GetSummonerByNameAsync(string summonerName, string key);
     }
 }

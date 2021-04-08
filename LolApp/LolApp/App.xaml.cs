@@ -20,6 +20,7 @@ namespace LolApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<ILolIconsApiService, LolIconsApiService>();
             containerRegistry.Register<ISummonerApiService, SummonerApiService>();
             containerRegistry.Register<IRankingApiService, RankingApiService>();
             containerRegistry.Register<IStatusApiService, StatusApiService>();

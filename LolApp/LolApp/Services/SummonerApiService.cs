@@ -12,28 +12,32 @@ namespace LolApp.Services
 {
     public class SummonerApiService : ISummonerApiService
     {
-        public const string ApiKey = Config.ApiKey;
-        ISerializerService serializerService = new SerializerService();
+        ILolIconsApiService LolIconsApiService;
+        public SummonerApiService(ILolIconsApiService lolIconsApiService)
+        {
+            LolIconsApiService = lolIconsApiService;
+        }
 
         public async Task<Summoner> GetSummonerAsync(string summonerName)
         {
-            Summoner summ = null;
+            Summoner summoner = null;
 
 
-            var refitClient = RestService.For<ISummonerApi>(Config.LanSummonerApiUrl);
+            var refitClient = RestService.For<ISummonerApi>(Config.LatinAmericaNorthSummonerApiUrl);
 
-
-
-            var response = await refitClient.GetSummonerAsync(summonerName, ApiKey);
+            var response = await refitClient.GetSummonerByNameAsync(summonerName, Config.ApiKey);
 
             if (response.IsSuccessStatusCode)
             {
                 var jsonSummoner = await response.Content.ReadAsStringAsync();
 
-                summ = JsonConvert.DeserializeObject<Summoner>(jsonSummoner);
+                summoner = JsonConvert.DeserializeObject<Summoner>(jsonSummoner);
+
+
+                summoner.ProfileIcon = await LolIconsApiService.GetProfileIconAsync(summoner.ProfileIconId);
             }
 
-            return summ;
+            return summoner;
         }
     }
 }
