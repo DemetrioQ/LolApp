@@ -15,19 +15,8 @@ namespace LolApp.ViewModels
 {
     public class GrandMasterViewModel : BaseViewModel
     {
-        private Entry entries;
-        private Status status;
-
-        public Entry Entries
-        {
-            get { return entries; }
-            set { SetProperty(ref entries, value); }
-        }
-        public Status Status
-        {
-            get { return status; }
-            set { SetProperty(ref status, value); }
-        }
+        public Entry Entries { get; set; }
+        public Status Status { get; set; }
         IStatusApiService StatusApiService { get; }
 
 
@@ -36,7 +25,6 @@ namespace LolApp.ViewModels
             StatusApiService = statusApiService;
             Status = new Status();
             GetStatus();
-
         }
 
         private async void GetStatus()

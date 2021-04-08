@@ -44,6 +44,11 @@
             </Picker.Items>
         </Picker>
         <Button Text="Get Ranking" Command="{Binding GetCommand}"></Button>
+        <Grid ColumnDefinitions="150,*,*" RowDefinitions="25" Margin="0,0,0,10">
+            <Label Text="Summoner" Grid.Column="0" Style="{StaticResource Header}" />
+            <Label Text="Win/Losses" Grid.Column="1" Style="{StaticResource Header}" />
+            <Label Text="Points" Grid.Column="2" Style="{StaticResource Header}"/>
+        </Grid>
         <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
 
         <ListView
@@ -51,14 +56,6 @@
         IsVisible="{Binding NotBusy}"
         HasUnevenRows="True"
         SeparatorVisibility="None">
-            <ListView.Header>
-                <Grid ColumnDefinitions="150,*,*" Margin="0,0,0,10">
-                    <Label Text="Summoner" Grid.Column="0" Style="{StaticResource Header}" />
-                    <Label Text="Win/Losses" Grid.Column="1" Style="{StaticResource Header}" />
-                    <Label Text="Points" Grid.Column="2" Style="{StaticResource Header}"/>
-                </Grid>
-            </ListView.Header>
-
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

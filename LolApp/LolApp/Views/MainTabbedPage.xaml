@@ -12,6 +12,5 @@
     <TabbedPage.Children>
         <local:SummonerPage Title="Summoner" IconImageSource="man"/>
         <local:RankingPage Title="Ranking" IconImageSource="trophy"/>
-        <local:GrandMasterPage Title="GrandMaster" />
     </TabbedPage.Children>
 </TabbedPage>

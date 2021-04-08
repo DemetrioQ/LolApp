@@ -13,6 +13,8 @@
 
             <Label HorizontalOptions="Center" Text="The level of the searched summoner is:" Padding="15,10,15,15" FontSize="Large" HorizontalTextAlignment="Center"/>
             <Label HorizontalOptions="Center" Text="{Binding Summoner.SummonerLevel}" FontSize="Large" TextColor="Black"/>
+            
+            <Image Source="{Binding Summoner.ProfileIcon}"  HorizontalOptions="Center" Aspect="AspectFit" />
 
 
         </StackLayout>

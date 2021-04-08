@@ -15,44 +15,15 @@ namespace LolApp.ViewModels
 {
     public class RankingViewModel : BaseViewModel
     {
+        public ObservableCollection<Ranking> Ranking { get; set; }
 
-        private ObservableCollection<Ranking> ranking;
-        private string queue;
-        private string tier;
-        private string division;
-        private bool isBusy;
+        public string Queue { get; set; }
 
+        public string Tier { get; set; }
 
-        public ObservableCollection<Ranking> Ranking
-        {
-            get { return ranking; }
-            set { SetProperty(ref ranking, value); }
-        }
+        public string Division { get; set; }
 
-        public string Queue
-        {
-            get { return queue; }
-            set { SetProperty(ref queue, value); }
-        }
-
-        public string Tier
-        {
-            get { return tier; }
-            set { SetProperty(ref tier, value); }
-        }
-
-        public string Division
-        {
-
-            get { return division; }
-            set { SetProperty(ref division, value); }
-
-        }
-        public bool IsBusy
-        {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
-        }
+        public bool IsBusy { get; set; }
 
         IRankingApiService _rankingApiService { get; }
         public ICommand GetCommand { get; }
@@ -75,7 +46,7 @@ namespace LolApp.ViewModels
                 IsBusy = true;
                 if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
-                   
+
                     Ranking = await _rankingApiService.GetRankingAync(Queue, Tier, Division);
                 }
                 else
@@ -85,7 +56,7 @@ namespace LolApp.ViewModels
 
                 IsBusy = false;
             }
-           
+
         }
 
     }

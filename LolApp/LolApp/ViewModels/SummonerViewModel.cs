@@ -13,30 +13,17 @@ namespace LolApp.ViewModels
 {
     class SummonerViewModel : BaseViewModel
     {
-        private Summoner summoner;
-        private string summonerName;
-
+        public Summoner Summoner { get; set; }
+        public string SummonerName { get; set; }
+       
+        ISummonerApiService SummonerApiService;
         public ICommand GetSummonerCommand { get; }
-
-        public string SummonerName
-        {
-            get { return summonerName; }
-            set { SetProperty(ref summonerName, value); }
-        }
-
-        ISummonerApiService summonerApiService;
-
-        public Summoner Summoner
-        {
-            get { return summoner; }
-            set { SetProperty(ref summoner, value); }
-        }
+        public ICommand TestCommand { get; }
 
         public SummonerViewModel(ISummonerApiService summonerService, IPageDialogService alertService) : base(alertService)
         {
-            //summonerApiService = new SummonerApiService();
             GetSummonerCommand = new DelegateCommand(GetSummonerAsync);
-            summonerApiService = summonerService;
+            SummonerApiService = summonerService;
         }
 
         private async void GetSummonerAsync()
@@ -44,9 +31,9 @@ namespace LolApp.ViewModels
 
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                var summoner = await summonerApiService.GetSummonerAsync(SummonerName);
+                var summoner = await SummonerApiService.GetSummonerAsync(SummonerName);
 
-                if(summoner == null)
+                if (summoner == null)
                 {
                     await AlertService.DisplayAlertAsync("Summoner not found", "No such summoner was found, please try another one.", "Ok");
                 }
@@ -57,8 +44,9 @@ namespace LolApp.ViewModels
             {
                 await AlertService.DisplayAlertAsync("No internet connection", "No internet connection detected", "ok");
             }
-            
+
 
         }
+
     }
 }
