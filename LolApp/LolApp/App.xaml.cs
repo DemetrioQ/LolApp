@@ -15,7 +15,7 @@ namespace LolApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync($"/{Config.MatchTabbedPage}");   
+            await NavigationService.NavigateAsync($"/{Config.MainTabbedPage}");   
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
