@@ -6,12 +6,28 @@ namespace LolApp
 {
     public static class Config
     {
+        //Api Key
         public const string ApiKey = "Api Key Here";
 
+        //Pages constants
         public const string SummonerPage = "Summoner";
         public const string RankingPage = "Ranking";
         public const string MainTabbedPage = "Main"; 
         public const string GrandMasterPage = "GrandMaster";
+
+        public const string MatchTotalPage = "MatchTotal";
+        public const string MatchBuildPage = "MatchBuild";
+        public const string MatchTabbedPage = "Match";
+
+        public const string MatchAnalysisTabbedPage = "MatchAnalysis";
+        public const string MatchAnalysisChampionKillsPage = "ChampionKills";
+        public const string MatchAnalysisGoldPage = "Gold";
+        public const string MatchAnalysisDamageDealtPage = "DamageDealt";
+
+
+        //Navigation parameters variables
+        public const string MatchParam = "MatchParameter";
+
 
         public const string NaRankingApiUrl = "https://na1.api.riotgames.com/lol/league-exp/v4/entries";
 

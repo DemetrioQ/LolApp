@@ -13,6 +13,7 @@ namespace LolApp.ViewModels
 {
     class SummonerViewModel : BaseViewModel
     {
+        public string Title { get; set; } = "Summoner";
         public Summoner Summoner { get; set; }
         public string SummonerName { get; set; }
        

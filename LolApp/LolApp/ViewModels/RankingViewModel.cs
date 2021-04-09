@@ -15,6 +15,7 @@ namespace LolApp.ViewModels
 {
     public class RankingViewModel : BaseViewModel
     {
+        public string Title { get; set; } = "Ranking";
         public ObservableCollection<Ranking> Ranking { get; set; }
 
         public string Queue { get; set; }

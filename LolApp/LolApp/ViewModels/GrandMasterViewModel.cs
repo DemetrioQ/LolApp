@@ -15,6 +15,7 @@ namespace LolApp.ViewModels
 {
     public class GrandMasterViewModel : BaseViewModel
     {
+        public string Title { get; set; } = "X Page";
         public Entry Entries { get; set; }
         public Status Status { get; set; }
         IStatusApiService StatusApiService { get; }
