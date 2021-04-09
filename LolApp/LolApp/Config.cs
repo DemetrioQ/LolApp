@@ -7,7 +7,7 @@ namespace LolApp
     public static class Config
     {
         //Api Key
-        public const string ApiKey = "RGAPI-bd9eb916-44c6-4f71-bcbf-8236b3b24b0f";
+        public const string ApiKey = "Api Key";
 
         //Pages constants
         public const string SummonerPage = "Summoner";
