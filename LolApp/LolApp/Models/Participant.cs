@@ -13,8 +13,10 @@ namespace LolApp.Models
         [JsonPropertyName("teamId")]
         public int TeamId { get; set; }
 
+
         [JsonPropertyName("championId")]
         public int ChampionId { get; set; }
+        public string ChampionIcon => Config.ChampionIconUrl + ChampionId + ".png";
 
         [JsonPropertyName("spell1Id")]
         public int Spell1Id { get; set; }

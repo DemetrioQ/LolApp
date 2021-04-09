@@ -32,9 +32,6 @@ namespace LolApp.Services
                 var jsonSummoner = await response.Content.ReadAsStringAsync();
 
                 summoner = JsonConvert.DeserializeObject<Summoner>(jsonSummoner);
-
-
-                summoner.ProfileIcon = await LolIconsApiService.GetProfileIconAsync(summoner.ProfileIconId);
             }
 
             return summoner;

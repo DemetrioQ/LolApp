@@ -12,7 +12,10 @@ namespace LolApp.ViewModels
         public Match Match { get; set; }
         public MatchViewModel(IPageDialogService alertService) : base(alertService)
         {
-
+            foreach (var item in Match.Participants)
+            {
+                
+            }
         }
 
         public void Initialize(INavigationParameters parameters)

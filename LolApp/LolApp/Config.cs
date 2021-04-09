@@ -7,7 +7,7 @@ namespace LolApp
     public static class Config
     {
         //Api Key
-        public const string ApiKey = "Api Key Here";
+        public const string ApiKey = "RGAPI-bd9eb916-44c6-4f71-bcbf-8236b3b24b0f";
 
         //Pages constants
         public const string SummonerPage = "Summoner";
@@ -48,9 +48,9 @@ namespace LolApp
 
 
         //Images Api 
-        public const string ProfileIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/profileicon";
-        public const string ChampionIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion";
-        public const string ItemIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item";
+        public const string ProfileIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/profileicon/";
+        public const string ChampionIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/";
+        public const string ItemIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/";
 
 
         //Match Api Endpoint
