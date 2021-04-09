@@ -15,7 +15,6 @@ namespace LolApp.Services
     {
         public async Task<Status> GetStatusAsync()
         {
-
             Status status = null;
 
             var refitClient = RestService.For<IStatusApi>(Config.LanStatusApiUrl);

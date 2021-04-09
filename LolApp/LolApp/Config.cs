@@ -6,7 +6,7 @@ namespace LolApp
 {
     public static class Config
     {
-        public const string ApiKey = "Api Key Here";
+        public const string ApiKey = "RGAPI-d20ce396-0c76-4af6-b376-704aef59580d";
 
         public const string SummonerPage = "Summoner";
         public const string RankingPage = "Ranking";
@@ -35,6 +35,10 @@ namespace LolApp
         public const string ProfileIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/profileicon";
         public const string ChampionIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion";
         public const string ItemIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item";
+
+
+        //Match Api Endpoint
+        public const string MatchApiUrl = "https://la1.api.riotgames.com/lol/match/v4";
 
 
     }
