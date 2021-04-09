@@ -9,6 +9,7 @@ using Android.OS;
 using Prism;
 using Prism.Ioc;
 using Acr.UserDialogs;
+using Android.Content.Res;
 
 namespace LolApp.Droid
 {
@@ -25,6 +26,7 @@ namespace LolApp.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            AssetManager assets = this.Assets;
             LoadApplication(new App(new AndroidInitializer()));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

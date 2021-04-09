@@ -15,7 +15,7 @@ namespace LolApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync($"/{Config.MainTabbedPage}");   
+            await NavigationService.NavigateAsync($"/{Config.MatchTabbedPage}");   
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -28,6 +28,7 @@ namespace LolApp
 
             containerRegistry.RegisterForNavigation<MainTabbedPage>(Config.MainTabbedPage);
             containerRegistry.RegisterForNavigation<MatchTabbedPage, MatchViewModel>(Config.MatchTabbedPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisTabbedPage, MatchViewModel>(Config.MatchAnalysisTabbedPage);
 
             containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(Config.RankingPage);
             containerRegistry.RegisterForNavigation<SummonerPage, SummonerViewModel>(Config.SummonerPage);

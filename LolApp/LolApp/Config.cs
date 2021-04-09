@@ -57,5 +57,63 @@ namespace LolApp
         public const string MatchApiUrl = "https://la1.api.riotgames.com/lol/match/v4";
 
 
+
+
+        public static string GetSpell(int id)
+        {
+            string spell = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/";
+            switch (id)
+            {
+                case 1:
+                    spell += "SummonerBoost.png";
+                    break;
+                case 21:
+                    spell += "SummonerBarrier.png";
+                    break;
+                case 14:
+                    spell += "SummonerDot.png";
+                    break;
+                case 3:
+                    spell += "SummonerExhaust.png";
+                    break;
+                case 4:
+                    spell += "SummonerFlash.png";
+                    break;
+                case 6:
+                    spell += "SummonerHaste.png";
+                    break;
+                case 7:
+                    spell += "SummonerHeal.png";
+                    break;
+                case 13:
+                    spell += "SummonerMana.png";
+                    break;
+                case 30:
+                    spell += "SummonerPoroRecall.png";
+                    break;
+                case 31:
+                    spell += "SummonerPoroThrow.png";
+                    break;
+                case 11:
+                    spell += "SummonerSmite.png";
+                    break;
+                case 39:
+                    spell += "SummonerSnowURFSnowball_Mark.png";
+                    break;
+                case 32:
+                    spell += "SummonerSnowball.png";
+                    break;
+                case 12:
+                    spell += "SummonerTeleport.png";
+                    break;
+                default:
+                    break;
+            }
+
+
+            return spell;
+        }
+
+
     }
 }

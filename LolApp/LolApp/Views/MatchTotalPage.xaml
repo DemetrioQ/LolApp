@@ -5,8 +5,37 @@
              Title="Total"
              >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Match Total Page" />
+        <StackLayout Margin="5">
+            <ListView
+                SeparatorVisibility="Default"
+                ItemsSource="{Binding Match.Participants}"
+                Margin="5"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowDefinitions="*,*" ColumnDefinitions="Auto,Auto,*" Margin="0" Padding="0">
+                                <Frame CornerRadius="15"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="5">
+                                    <Image Source="{Binding ChampionIcon}" Aspect="AspectFill"/>
+                                </Frame>
+                                <Image Source="{Binding Spell1Icon}" Grid.Column="1" Grid.Row="0" ></Image>
+                                <Image Source="{Binding Spell2Icon}" Grid.Column="1" Grid.Row="1" ></Image>
+                                
+                                <Label Text="{Binding SummonerName}" Grid.Column="2" Grid.Row="0"></Label>
+                                <Label Grid.Row="1" Grid.Column="2">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{} {0}/{1}/{2}">
+                                            <Binding Path="Stats.Kills" />
+                                            <Binding Path="Stats.Deaths" />
+                                            <Binding Path="Stats.Assists" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
