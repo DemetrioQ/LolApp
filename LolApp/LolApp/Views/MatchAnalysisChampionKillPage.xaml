@@ -34,26 +34,24 @@
                 >
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ContentView>
-                                <StackLayout>
-                                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,3,0,3">
-                                        <Frame CornerRadius="60"  Grid.Column="0" Padding="0" IsClippedToBounds="True" HeightRequest="40">
-                                            <Image Source="{Binding Champion.ChampionIcon}" Aspect="AspectFill" />
-                                        </Frame>
-                                        <Slider  Maximum="{Binding Source={x:Reference ChampionKillsPage}, Path=BindingContext.MostKills}" Minimum="0" Value="{Binding Stats.Kills}" VerticalOptions="CenterAndExpand" ThumbColor="Transparent" Grid.Column="1" >
-                                            <Slider.Triggers>
-                                                <DataTrigger  TargetType="Slider" Binding="{Binding Stats.Win}" Value="true">
-                                                    <Setter Property="MinimumTrackColor" Value="Blue"/>
-                                                </DataTrigger>
-                                                <DataTrigger  TargetType="Slider" Binding="{Binding Stats.Win}" Value="false">
-                                                    <Setter Property="MinimumTrackColor" Value="Red"/>
-                                                </DataTrigger>
-                                            </Slider.Triggers>
-                                        </Slider>
-                                        <Label Text="{Binding Stats.Kills}" Grid.Column="2"/>
-                                    </Grid>
-                                </StackLayout>
-                        </ContentView>
+                            <ContentView>
+                                <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,3,0,3">
+                                    <Frame CornerRadius="60"  Grid.Column="0" Padding="0" IsClippedToBounds="True" HeightRequest="40">
+                                        <Image Source="{Binding Champion.ChampionIcon}" Aspect="AspectFill" />
+                                    </Frame>
+                                    <Slider  Maximum="{Binding Source={x:Reference ChampionKillsPage}, Path=BindingContext.MostKills}" Minimum="0" Value="{Binding Stats.Kills}" VerticalOptions="CenterAndExpand" ThumbColor="Transparent" Grid.Column="1" >
+                                        <Slider.Triggers>
+                                            <DataTrigger  TargetType="Slider" Binding="{Binding Stats.Win}" Value="true">
+                                                <Setter Property="MinimumTrackColor" Value="Blue"/>
+                                            </DataTrigger>
+                                            <DataTrigger  TargetType="Slider" Binding="{Binding Stats.Win}" Value="false">
+                                                <Setter Property="MinimumTrackColor" Value="Red"/>
+                                            </DataTrigger>
+                                        </Slider.Triggers>
+                                    </Slider>
+                                    <Label Text="{Binding Stats.Kills}" Grid.Column="2"/>
+                                </Grid>
+                            </ContentView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

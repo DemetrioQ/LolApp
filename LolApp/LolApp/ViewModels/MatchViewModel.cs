@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using LolApp.Models;
+using LolApp.Services;
 using Newtonsoft.Json;
 using Prism.Navigation;
 using Prism.Services;
@@ -19,8 +20,12 @@ namespace LolApp.ViewModels
         public Team LosingTeam { get; set; }
         public int MostKills { get; set; }
         public string ParticipantTeamColor { get; set; }
-        public MatchViewModel(IPageDialogService alertService) : base(alertService)
+        IChampionService ChampionService { get; }
+        
+        public MatchViewModel(IPageDialogService alertService, IChampionService championService) : base(alertService)
         {
+            ChampionService = championService;
+            
         }
 
         public void Initialize(INavigationParameters parameters)
@@ -35,9 +40,9 @@ namespace LolApp.ViewModels
                 foreach (var participant in Match.Participants)
                 {
                     participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
-                    participant.Champion = Config.GetChampion(participant.ChampionId);
-                    participant.Spell1Icon = Config.GetSpell(participant.Spell1Id);
-                    participant.Spell2Icon = Config.GetSpell(participant.Spell2Id);
+                    participant.Champion = ChampionService.GetChampion(participant.ChampionId);
+                    participant.Spell1Icon = Utilis.GetSpell(participant.Spell1Id);
+                    participant.Spell2Icon = Utilis.GetSpell(participant.Spell2Id);
 
                     if(participant.Stats.Kills > MostKills)
                     {
@@ -55,7 +60,6 @@ namespace LolApp.ViewModels
                         LosingTeam.Kills += participant.Stats.Kills;
                     }
                 }
-                Match.Participants.OrderByDescending(x => x.Stats.Kills);
 
             }
         }

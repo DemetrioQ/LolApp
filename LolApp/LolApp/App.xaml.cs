@@ -38,6 +38,7 @@ namespace LolApp
             containerRegistry.Register<IRankingApiService, RankingApiService>();
             containerRegistry.Register<IStatusApiService, StatusApiService>();
             containerRegistry.Register<ISerializerService, SerializerService>();
+            containerRegistry.RegisterSingleton<IChampionService, ChampionService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>(Config.NavigationPage);
             containerRegistry.RegisterForNavigation<MainTabbedPage>(Config.MainTabbedPage);
