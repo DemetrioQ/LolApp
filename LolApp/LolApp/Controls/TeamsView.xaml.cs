@@ -7,19 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace LolApp.Views
+namespace LolApp.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MatchTotalPage : ContentPage
+    public partial class TeamsView : Grid
     {
-        public MatchTotalPage()
+        public TeamsView()
         {
             InitializeComponent();
-        }
-
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-
         }
     }
 }

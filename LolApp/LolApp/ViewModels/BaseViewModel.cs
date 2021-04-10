@@ -10,7 +10,6 @@ namespace LolApp.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
-
         protected IPageDialogService AlertService { get; }
 
         protected BaseViewModel(IPageDialogService pageDialogService)

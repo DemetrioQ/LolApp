@@ -9,6 +9,7 @@ namespace LolApp.Models
     {
         [JsonPropertyName("participantId")]
         public int ParticipantId { get; set; }
+
         public string SummonerName { get; set; }
 
         [JsonPropertyName("teamId")]
@@ -17,23 +18,26 @@ namespace LolApp.Models
         [JsonPropertyName("championId")]
         public int ChampionId { get; set; }
 
+        public Champion Champion { get; set; }
+
         [JsonPropertyName("spell1Id")]
         public int Spell1Id { get; set; }
 
-        public string Spell1Icon => Config.GetSpell(Spell1Id);
 
         [JsonPropertyName("spell2Id")]
         public int Spell2Id { get; set; }
 
-        public string Spell2Icon => Config.GetSpell(Spell2Id);
 
         [JsonPropertyName("stats")]
         public Stats Stats { get; set; }
 
         [JsonPropertyName("timeline")]
-        public Timeline Timeline { get; set; }  
+        public Timeline Timeline { get; set; }
+        public string Spell1Icon { get; set; }
+
+        public string Spell2Icon { get; set; }
 
     }
 
-   
+
 }

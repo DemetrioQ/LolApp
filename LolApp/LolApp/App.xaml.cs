@@ -1,9 +1,13 @@
-﻿using LolApp.Services;
+﻿using LolApp.Models;
+using LolApp.Services;
 using LolApp.ViewModels;
 using LolApp.Views;
+using Newtonsoft.Json;
 using Prism;
 using Prism.Ioc;
+using Prism.Navigation;
 using Prism.Unity;
+using System.IO;
 using Xamarin.Forms;
 
 namespace LolApp
@@ -15,7 +19,16 @@ namespace LolApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            await NavigationService.NavigateAsync($"/{Config.SummonerPage}");   
+            //await NavigationService.NavigateAsync($"/{Config.SummonerPage}");   
+            StreamReader strm = new StreamReader(Android.App.Application.Context.Assets.Open("MatchTest.json"));
+            var response = strm.ReadToEnd();
+
+            Match match = JsonConvert.DeserializeObject<Match>(response);
+
+            var parameters = new NavigationParameters();
+            parameters.Add(Config.MatchParam, match);
+
+            await NavigationService.NavigateAsync($"{Config.MatchTabbedPage}", parameters);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -26,6 +39,7 @@ namespace LolApp
             containerRegistry.Register<IStatusApiService, StatusApiService>();
             containerRegistry.Register<ISerializerService, SerializerService>();
 
+            containerRegistry.RegisterForNavigation<NavigationPage>(Config.NavigationPage);
             containerRegistry.RegisterForNavigation<MainTabbedPage>(Config.MainTabbedPage);
             containerRegistry.RegisterForNavigation<MatchTabbedPage, MatchViewModel>(Config.MatchTabbedPage);
             containerRegistry.RegisterForNavigation<MatchAnalysisTabbedPage, MatchViewModel>(Config.MatchAnalysisTabbedPage);

@@ -7,6 +7,6 @@
         <Style x:Key="CustomButton" TargetType="Button">
             <Setter Property="BackgroundColor" Value="OrangeRed"/>
             <Setter Property="CornerRadius" Value="30"/>
-        </Style>
+            </Style>
     </prism:PrismApplication.Resources>
 </prism:PrismApplication>

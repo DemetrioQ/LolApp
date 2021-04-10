@@ -5,7 +5,9 @@ using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace LolApp.ViewModels
@@ -13,31 +15,49 @@ namespace LolApp.ViewModels
     public class MatchViewModel : BaseViewModel, IInitialize
     {
         public Match Match { get; set; }
+        public Team WinningTeam { get; set; }
+        public Team LosingTeam { get; set; }
+        public int MostKills { get; set; }
+        public string ParticipantTeamColor { get; set; }
         public MatchViewModel(IPageDialogService alertService) : base(alertService)
         {
         }
 
         public void Initialize(INavigationParameters parameters)
         {
-            StreamReader strm = new StreamReader(Android.App.Application.Context.Assets.Open("MatchTest.json"));
-            var response = strm.ReadToEnd();
-
-            Match = JsonConvert.DeserializeObject<Match>(response);
-
-            foreach (var participant in Match.Participants)
+            if (parameters.TryGetValue(Config.MatchParam, out Match match))
             {
-                participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
-            }
-
-            /*if (parameters.TryGetValue(Config.MatchParam, out Match match))
-            {
+                WinningTeam = new Team();
+                LosingTeam = new Team();
                 Match = match;
+                MostKills = 0;
 
                 foreach (var participant in Match.Participants)
                 {
                     participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
+                    participant.Champion = Config.GetChampion(participant.ChampionId);
+                    participant.Spell1Icon = Config.GetSpell(participant.Spell1Id);
+                    participant.Spell2Icon = Config.GetSpell(participant.Spell2Id);
+
+                    if(participant.Stats.Kills > MostKills)
+                    {
+                        MostKills = participant.Stats.Kills;
+                    }
+
+                    if (participant.Stats.Win)
+                    {
+                        WinningTeam.Participants.Add(participant);
+                        WinningTeam.Kills += participant.Stats.Kills;
+                    }
+                    else
+                    {
+                        LosingTeam.Participants.Add(participant);
+                        LosingTeam.Kills += participant.Stats.Kills;
+                    }
                 }
-            }*/
+                Match.Participants.OrderByDescending(x => x.Stats.Kills);
+
+            }
         }
     }
 }

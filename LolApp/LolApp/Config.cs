@@ -1,5 +1,11 @@
-﻿using System;
+﻿using LolApp.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace LolApp
@@ -9,11 +15,15 @@ namespace LolApp
         //Api Key
         public const string ApiKey = "YOUR API KEY";
 
+        public static ChampionRoot Champions = GetChampions();
+
         //Pages constants
+        public const string NavigationPage = "Nav";
+
         public const string SummonerPage = "Summoner";
         public const string SummonerDetailPage = "SummonerDetail";
         public const string RankingPage = "Ranking";
-        public const string MainTabbedPage = "Main"; 
+        public const string MainTabbedPage = "Main";
         public const string GrandMasterPage = "GrandMaster";
 
         public const string MatchTotalPage = "MatchTotal";
@@ -52,69 +62,81 @@ namespace LolApp
         public const string ProfileIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/profileicon/";
         public const string ChampionIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/";
         public const string ItemIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/";
+        public const string SummonerSpellsIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/";
 
 
         //Match Api Endpoint
         public const string MatchApiUrl = "https://la1.api.riotgames.com/lol/match/v4";
 
-
-
-
         public static string GetSpell(int id)
         {
-            string spell = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/";
+            string spell = Config.SummonerSpellsIconUrl;
             switch (id)
             {
                 case 1:
-                    spell += "SummonerBoost.png";
-                    break;
-                case 21:
-                    spell += "SummonerBarrier.png";
-                    break;
-                case 14:
-                    spell += "SummonerDot.png";
-                    break;
-                case 3:
-                    spell += "SummonerExhaust.png";
-                    break;
-                case 4:
-                    spell += "SummonerFlash.png";
-                    break;
-                case 6:
-                    spell += "SummonerHaste.png";
-                    break;
-                case 7:
-                    spell += "SummonerHeal.png";
-                    break;
-                case 13:
-                    spell += "SummonerMana.png";
-                    break;
-                case 30:
-                    spell += "SummonerPoroRecall.png";
-                    break;
-                case 31:
-                    spell += "SummonerPoroThrow.png";
-                    break;
-                case 11:
-                    spell += "SummonerSmite.png";
-                    break;
-                case 39:
-                    spell += "SummonerSnowURFSnowball_Mark.png";
-                    break;
-                case 32:
-                    spell += "SummonerSnowball.png";
-                    break;
-                case 12:
-                    spell += "SummonerTeleport.png";
-                    break;
-                default:
-                    break;
-            }
+                    return spell += "SummonerBoost.png";
 
+                case 21:
+                    return spell += "SummonerBarrier.png";
+
+                case 14:
+                    return spell += "SummonerDot.png";
+
+                case 3:
+                    return spell += "SummonerExhaust.png";
+
+                case 4:
+                    return spell += "SummonerFlash.png";
+
+                case 6:
+                    return spell += "SummonerHaste.png";
+
+                case 7:
+                    return spell += "SummonerHeal.png";
+
+                case 13:
+                    return spell += "SummonerMana.png";
+
+                case 30:
+                    return spell += "SummonerPoroRecall.png";
+
+                case 31:
+                    return spell += "SummonerPoroThrow.png";
+
+                case 11:
+                    return spell += "SummonerSmite.png";
+                case 39:
+                    return spell += "SummonerSnowURFSnowball_Mark.png";
+                case 32:
+                    return spell += "SummonerSnowball.png";
+                case 12:
+                    return spell += "SummonerTeleport.png";
+            }
 
             return spell;
         }
 
 
+
+
+        public static ChampionRoot GetChampions()
+        {
+
+            var url = @"http://ddragon.leagueoflegends.com/cdn/11.7.1/data/en_US/champion.json";
+            WebClient client = new WebClient();
+
+            var download = client.DownloadString(url);
+            return JsonConvert.DeserializeObject<ChampionRoot>(download);
+
+        }
+        public static Champion GetChampion(int championid)
+        {
+            var champion = Champions.Data.First(x => x.Value.Key == championid).Value;
+            champion.ChampionIcon = $"{Config.ChampionIconUrl}{champion.Id}.png";
+            return champion;
+        }
+
+
     }
 }
+

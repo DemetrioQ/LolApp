@@ -2,40 +2,38 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LolApp.Views.MatchTotalPage"
+             xmlns:controls="clr-namespace:LolApp.Controls"
              Title="Total"
              >
     <ContentPage.Content>
-        <StackLayout Margin="5">
-            <ListView
-                SeparatorVisibility="Default"
-                ItemsSource="{Binding Match.Participants}"
-                Margin="5"
+        <StackLayout Margin="0" Padding="0">
+            <CollectionView
+                ItemsSource="{Binding WinningTeam.Participants}"
+                
                 >
-                <ListView.ItemTemplate>
+                <CollectionView.Header>
+                    <Label Text="Win" />
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <Grid RowDefinitions="*,*" ColumnDefinitions="Auto,Auto,*" Margin="0" Padding="0">
-                                <Frame CornerRadius="15"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="5">
-                                    <Image Source="{Binding ChampionIcon}" Aspect="AspectFill"/>
-                                </Frame>
-                                <Image Source="{Binding Spell1Icon}" Grid.Column="1" Grid.Row="0" ></Image>
-                                <Image Source="{Binding Spell2Icon}" Grid.Column="1" Grid.Row="1" ></Image>
-                                
-                                <Label Text="{Binding SummonerName}" Grid.Column="2" Grid.Row="0"></Label>
-                                <Label Grid.Row="1" Grid.Column="2">
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{} {0}/{1}/{2}">
-                                            <Binding Path="Stats.Kills" />
-                                            <Binding Path="Stats.Deaths" />
-                                            <Binding Path="Stats.Assists" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
-                            </Grid>
-                        </ViewCell>
+                        <controls:TeamsView/>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            <CollectionView
+                ItemsSource="{Binding LosingTeam.Participants}"
+                
+                >
+                 <CollectionView.Header>
+                    <Label Text="Loss"/>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:TeamsView/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

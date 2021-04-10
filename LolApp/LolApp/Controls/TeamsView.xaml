@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid RowDefinitions="20,25" ColumnDefinitions="Auto,Auto,*"  RowSpacing="0" Padding="0" Margin="2"
+       xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="LolApp.Controls.TeamsView">
+    <Frame CornerRadius="60"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" IsClippedToBounds="True">
+            <Image Source="{Binding Champion.ChampionIcon}" Aspect="AspectFill" />
+        </Frame>
+        <Frame CornerRadius="100" Grid.Row="1" Grid.Column="0" HeightRequest="20" Margin="25,5,0,0" Padding="0" BackgroundColor="black">
+            <Frame.Content>
+                <Label Text="{Binding Stats.ChampLevel}"  FontSize="14" TextColor="White" FontAttributes="Bold" Margin="0" BackgroundColor="Transparent" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
+            </Frame.Content>
+        </Frame>
+        <Image Source="{Binding Spell1Icon}" Grid.Column="1" Grid.Row="0" HeightRequest="20"></Image>
+        <Image Source="{Binding Spell2Icon}" Grid.Column="1" Grid.Row="1" HeightRequest="20"></Image>
+
+        <Label Text="{Binding SummonerName}" Grid.Column="2" Grid.Row="0"></Label>
+    <Label Grid.Row="1" Grid.Column="2">
+        <Label.Text>
+            <MultiBinding StringFormat="{} {0}/{1}/{2}">
+                <Binding Path="Stats.Kills"/>
+                <Binding Path="Stats.Deaths"/>
+                <Binding Path="Stats.Assists"/>
+            </MultiBinding>
+        </Label.Text>
+    </Label>
+</Grid>

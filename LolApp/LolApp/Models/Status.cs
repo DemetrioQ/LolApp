@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -20,6 +21,6 @@ namespace LolApp.Models
         public string Name { get; set; }
 
         [JsonPropertyName("entries")]
-        public IList<Entry> Entries { get; set; }
+        public ObservableCollection<Entry> Entries { get; set; }
     }
 }

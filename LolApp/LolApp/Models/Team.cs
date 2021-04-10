@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -9,6 +11,9 @@ namespace LolApp.Models
     {
         [JsonPropertyName("teamId")]
         public int TeamId { get; set; }
+
+        public ObservableCollection<Participant> Participants { get; set; } = new ObservableCollection<Participant>();
+
 
         [JsonPropertyName("win")]
         public string Win { get; set; }
@@ -54,5 +59,6 @@ namespace LolApp.Models
 
         [JsonPropertyName("bans")]
         public List<object> Bans { get; set; }
+        public int Kills { get; set; }
     }
 }
