@@ -4,6 +4,9 @@
              x:Class="LolApp.App"
              xmlns:prism="http://prismlibrary.com">
     <prism:PrismApplication.Resources>
-
+        <Style x:Key="CustomButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="OrangeRed"/>
+            <Setter Property="CornerRadius" Value="30"/>
+        </Style>
     </prism:PrismApplication.Resources>
 </prism:PrismApplication>

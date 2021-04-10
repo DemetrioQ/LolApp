@@ -4,20 +4,74 @@
              x:Class="LolApp.Views.SummonerPage"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,2*,*" BackgroundColor="White">
 
-            <Label Text="League of Legends summoner level finder" FontSize="Medium"/>
+            <Label 
+                Grid.Row="0" 
+                Grid.Column="1" 
+                VerticalOptions="Center" 
+                Text="Summoner Finder" 
+                FontSize="Large" 
+                HorizontalTextAlignment="Center" 
+                HorizontalOptions="Center" 
+                Margin="0,0,0,50" 
+                FontFamily="sans-serif" 
+                TextColor="Black" 
+                TextTransform="Uppercase" />
 
-            <Entry Text="{Binding SummonerName}" Placeholder="Type a summoner name here..."/>
+            <Entry Grid.Row="0" 
+                Grid.Column="1" 
+                Text="{Binding SummonerName}" 
+                VerticalOptions="End"
+                Margin="0,80,0,0"
+                Placeholder="Type a summoner name here..."
+                HorizontalTextAlignment="Center"/>
 
-            <Button Text="Find Summoner Level" Command="{Binding GetSummonerCommand}"/>
+            <Button 
+                Grid.Row="1" 
+                Grid.Column="1" 
+                Text="Find Summoner Level" 
+                Command="{Binding GetSummonerCommand}" 
+                HorizontalOptions="Center" 
+                VerticalOptions="Start"
+                Margin="0,20,0,0"
+                Style="{StaticResource CustomButton}"/>
 
-            <Label HorizontalOptions="Center" Text="The level of the searched summoner is:" Padding="15,10,15,15" FontSize="Large" HorizontalTextAlignment="Center"/>
-            <Label HorizontalOptions="Center" Text="{Binding Summoner.SummonerLevel}" FontSize="Large" TextColor="Black"/>
-            
-            <Image Source="{Binding Summoner.ProfileIcon}"  HorizontalOptions="Center" Aspect="AspectFit" />
+            <StackLayout Grid.Row="1" 
+                   Grid.Column="0" VerticalOptions="End" Margin="0,0,0,20">
+                <Label 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"
+                   IsVisible="{Binding Show}"
+                   Text="Level:" 
+                   Padding="15,10,15,0" 
+                   FontSize="Large" 
+                   HorizontalTextAlignment="Center"/>
+
+                <Label 
+                VerticalOptions="End"
+                Grid.Column="0" 
+                HorizontalOptions="Center" 
+                Text="{Binding Summoner.SummonerLevel}" 
+                FontSize="Large" 
+                TextColor="Black" />
+            </StackLayout>
+
+            <Image Grid.Row="1" 
+                   Grid.Column="1" VerticalOptions="End" Source="{Binding Summoner.ProfileIcon}"  HorizontalOptions="FillAndExpand" />
+
+            <Button 
+                Grid.Row="1" 
+                Grid.Column="2" 
+                Text="See Details" 
+                Command="{Binding GetSummonerCommand}" 
+                HorizontalOptions="Center" 
+                VerticalOptions="End"
+                Margin="0,20,10,30" 
+                IsVisible="{Binding Show}"
+                Style="{StaticResource CustomButton}"/>
 
 
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

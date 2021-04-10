@@ -7,10 +7,11 @@ namespace LolApp
     public static class Config
     {
         //Api Key
-        public const string ApiKey = "Api Key";
+        public const string ApiKey = "YOUR API KEY";
 
         //Pages constants
         public const string SummonerPage = "Summoner";
+        public const string SummonerDetailPage = "SummonerDetail";
         public const string RankingPage = "Ranking";
         public const string MainTabbedPage = "Main"; 
         public const string GrandMasterPage = "GrandMaster";

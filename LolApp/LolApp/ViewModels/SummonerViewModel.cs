@@ -15,6 +15,7 @@ namespace LolApp.ViewModels
     {
         public string Title { get; set; } = "Summoner";
         public Summoner Summoner { get; set; }
+        public bool Show { get; set; } = false;
         public string SummonerName { get; set; }
        
         ISummonerApiService SummonerApiService;
@@ -37,6 +38,11 @@ namespace LolApp.ViewModels
                 if (summoner == null)
                 {
                     await AlertService.DisplayAlertAsync("Summoner not found", "No such summoner was found, please try another one.", "Ok");
+                    Show = false;
+                }
+                else
+                {
+                    Show = true;
                 }
 
                 Summoner = summoner;
