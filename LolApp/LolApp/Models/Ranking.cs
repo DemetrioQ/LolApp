@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace LolApp.Models
 {
-    public class Ranking
+    public class Ranking : BaseModel
     {
 
         [JsonPropertyName("summonerName")]

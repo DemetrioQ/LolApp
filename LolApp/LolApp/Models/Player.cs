@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace LolApp.Models
 {
-    public class Player
+    public class Player : BaseModel
     {
         [JsonPropertyName("platformId")]
         public string PlatformId { get; set; }

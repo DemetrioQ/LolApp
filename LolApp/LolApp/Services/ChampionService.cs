@@ -11,15 +11,6 @@ namespace LolApp.Services
     public class ChampionService : IChampionService
     {
         private static ChampionService championService = new ChampionService();
-
-        /*public static ChampionService GetChampionService()
-        {
-            if(championService == null)
-            {
-                championService = new ChampionService();
-            }
-            return championService;
-        }*/
        
         public ChampionRoot GetChampions()
         {

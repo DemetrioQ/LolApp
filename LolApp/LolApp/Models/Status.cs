@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace LolApp.Models
 {
-    public class Status
+    public class Status : BaseModel
     {
         [JsonPropertyName("tier")]
         public string Tier { get; set; }

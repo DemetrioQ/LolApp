@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace LolApp.Models
 {
-    public class Entry
+    public class Entry : BaseModel
     {
         [JsonPropertyName("summonerId")]
         public string SummonerId { get; set; }
@@ -21,5 +22,6 @@ namespace LolApp.Models
 
         [JsonPropertyName("wins")]
         public int Wins { get; set; }
+
     }
 }

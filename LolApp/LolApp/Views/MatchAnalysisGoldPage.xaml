@@ -3,10 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LolApp.Views.MatchAnalysisGoldPage"
              Title="Gold"
+             x:Name="ChampionGoldPage"
              >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Match Analysis Gold Page" />
+        <StackLayout Margin="10">
+            <Grid RowDefinitions="Auto, *" ColumnDefinitions="*,*" Margin="10">
+                <Label Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Win Team" TextColor="Blue"/>
+                            <Span Text="&#x0a;"/>
+                            <Span Text="{Binding WinningTeam.Gold}" TextColor="Blue" FontAttributes="Bold" FontSize="Large"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Loss Team" TextColor="Red"/>
+                            <Span Text="&#x0a;"/>
+                            <Span Text="{Binding LosingTeam.Gold}" TextColor="Red" FontAttributes="Bold" FontSize="Large"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <CollectionView
+                ItemsSource="{Binding MatchAnalysisGold.Participants}"
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView>
+                                <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,3,0,3">
+                                    <Frame CornerRadius="60"  Grid.Column="0" Padding="0" IsClippedToBounds="True" HeightRequest="40">
+                                        <Image Source="{Binding Champion.ChampionIcon}" Aspect="AspectFill" />
+                                    </Frame>
+                                    <Slider  Maximum="{Binding Source={x:Reference ChampionGoldPage}, Path=BindingContext.MostGold}" Minimum="0" Value="{Binding Stats.GoldEarned}" VerticalOptions="CenterAndExpand" ThumbColor="Transparent" Grid.Column="1" >
+                                        <Slider.Triggers>
+                                            <DataTrigger  TargetType="Slider" Binding="{Binding Stats.Win}" Value="true">
+                                                <Setter Property="MinimumTrackColor" Value="Blue"/>
+                                            </DataTrigger>
+                                            <DataTrigger  TargetType="Slider" Binding="{Binding Stats.Win}" Value="false">
+                                                <Setter Property="MinimumTrackColor" Value="Red"/>
+                                            </DataTrigger>
+                                        </Slider.Triggers>
+                                    </Slider>
+                                    <Label Text="{Binding Stats.GoldEarned}" Grid.Column="2"/>
+                                </Grid>
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

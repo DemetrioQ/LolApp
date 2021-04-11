@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace LolApp.Models
 {
-    public class Champion
+    public class Champion : BaseModel
     {
         [JsonPropertyName("id")]
         public string Id { get; set; }

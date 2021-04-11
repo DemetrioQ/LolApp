@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace LolApp.Models
 {
-    public class Timeline
+    public class Timeline : BaseModel
     {
         [JsonPropertyName("participantId")]
         public int ParticipantId { get; set; }

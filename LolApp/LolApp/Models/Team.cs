@@ -7,9 +7,9 @@ using System.Text.Json.Serialization;
 
 namespace LolApp.Models
 {
-    public class Team
+    public class Team : BaseModel
     {
-        [JsonPropertyName("teamId")]
+        [JsonPropertyName("teamId")] 
         public int TeamId { get; set; }
 
         public ObservableCollection<Participant> Participants { get; set; } = new ObservableCollection<Participant>();
@@ -60,5 +60,7 @@ namespace LolApp.Models
         [JsonPropertyName("bans")]
         public List<object> Bans { get; set; }
         public int Kills { get; set; }
+        public int Gold { get; set; }
+        public int Damage { get; set; }
     }
 }

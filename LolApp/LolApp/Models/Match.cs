@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace LolApp.Models
 {
-    public class Match
+    public class Match : BaseModel
     {
         [JsonPropertyName("platformId")]
         public string PlatformId { get; set; }
@@ -64,5 +65,6 @@ namespace LolApp.Models
 
         [JsonPropertyName("participantIdentities")]
         public List<ParticipantIdentity> ParticipantIdentities { get; set; }
+
     }
 }

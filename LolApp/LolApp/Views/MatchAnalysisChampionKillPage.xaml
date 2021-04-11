@@ -27,7 +27,7 @@
                 </Label>
             
             <CollectionView
-                ItemsSource="{Binding Match.Participants}"
+                ItemsSource="{Binding MatchAnalysisKill.Participants}"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
