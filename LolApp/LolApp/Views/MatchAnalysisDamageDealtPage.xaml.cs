@@ -16,5 +16,6 @@ namespace LolApp.Views
         {
             InitializeComponent();
         }
+
     }
 }

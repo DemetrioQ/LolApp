@@ -8,6 +8,7 @@
     <ContentPage.Content>
         <StackLayout Margin="0" Padding="0">
             <CollectionView
+                
                 ItemsSource="{Binding WinningTeam.Participants}"
                 
                 >

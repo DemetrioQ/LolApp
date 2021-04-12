@@ -318,5 +318,8 @@ namespace LolApp.Models
 
         [JsonPropertyName("statPerk2")]
         public int StatPerk2 { get; set; }
+        public float TotalKillsProgress { get; set; }
+        public float TotalGoldEarnedProgress { get; set; }
+        public float TotalDamageDealtProgress { get; set; }
     }
 }

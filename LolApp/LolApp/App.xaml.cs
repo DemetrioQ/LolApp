@@ -43,18 +43,18 @@ namespace LolApp
             containerRegistry.RegisterForNavigation<NavigationPage>(Config.NavigationPage);
             containerRegistry.RegisterForNavigation<MainTabbedPage>(Config.MainTabbedPage);
             containerRegistry.RegisterForNavigation<MatchTabbedPage, MatchViewModel>(Config.MatchTabbedPage);
-            containerRegistry.RegisterForNavigation<MatchAnalysisTabbedPage, MatchViewModel>(Config.MatchAnalysisTabbedPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisTabbedPage>(Config.MatchAnalysisTabbedPage);
 
             containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(Config.RankingPage);
             containerRegistry.RegisterForNavigation<SummonerPage, SummonerViewModel>(Config.SummonerPage);
             containerRegistry.RegisterForNavigation<SummonerDetailPage, SummonerDetailViewModel>(Config.SummonerDetailPage);
             containerRegistry.RegisterForNavigation<GrandMasterPage, GrandMasterViewModel>(Config.GrandMasterPage);
 
-            containerRegistry.RegisterForNavigation<MatchTotalPage, MatchViewModel>(Config.MatchTotalPage);
-            containerRegistry.RegisterForNavigation<MatchBuildPage, MatchViewModel>(Config.MatchBuildPage);
-            containerRegistry.RegisterForNavigation<MatchAnalysisChampionKillPage, MatchViewModel>(Config.MatchAnalysisChampionKillsPage);
-            containerRegistry.RegisterForNavigation<MatchAnalysisGoldPage, MatchViewModel>(Config.MatchAnalysisGoldPage);
-            containerRegistry.RegisterForNavigation<MatchAnalysisDamageDealtPage, MatchViewModel>(Config.MatchAnalysisDamageDealtPage);
+            containerRegistry.RegisterForNavigation<MatchTotalPage>(Config.MatchTotalPage);
+            containerRegistry.RegisterForNavigation<MatchBuildPage>(Config.MatchBuildPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisChampionKillPage>(Config.MatchAnalysisChampionKillsPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisGoldPage>(Config.MatchAnalysisGoldPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisDamageDealtPage>(Config.MatchAnalysisDamageDealtPage);
         }
     }
 }

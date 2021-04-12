@@ -6,57 +6,55 @@
              x:Name="ChampionGoldPage"
              >
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <Grid RowDefinitions="Auto, *" ColumnDefinitions="*,*" Margin="10">
-                <Label Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Win Team" TextColor="Blue"/>
-                            <Span Text="&#x0a;"/>
-                            <Span Text="{Binding WinningTeam.Gold}" TextColor="Blue" FontAttributes="Bold" FontSize="Large"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Label Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Loss Team" TextColor="Red"/>
-                            <Span Text="&#x0a;"/>
-                            <Span Text="{Binding LosingTeam.Gold}" TextColor="Red" FontAttributes="Bold" FontSize="Large"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+        <Grid RowDefinitions="Auto, *" ColumnDefinitions="*,*" Margin="10">
+            <Label Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Win Team" TextColor="Blue"/>
+                        <Span Text="&#x0a;"/>
+                        <Span Text="{Binding WinningTeam.Gold, StringFormat='{0:#,0}'}" TextColor="Blue" FontAttributes="Bold" FontSize="Large"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Loss Team" TextColor="Red"/>
+                        <Span Text="&#x0a;"/>
+                        <Span Text="{Binding LosingTeam.Gold, StringFormat='{0:#,0}'}" TextColor="Red" FontAttributes="Bold" FontSize="Large"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
 
-                <CollectionView
-                ItemsSource="{Binding MatchAnalysisGold.Participants}"
+            <CollectionView
+                ItemsSource="{Binding AnalysisGold}"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <ContentView>
-                                <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,3,0,3">
-                                    <Frame CornerRadius="60"  Grid.Column="0" Padding="0" IsClippedToBounds="True" HeightRequest="40">
-                                        <Image Source="{Binding Champion.ChampionIcon}" Aspect="AspectFill" />
-                                    </Frame>
-                                    <Slider  Maximum="{Binding Source={x:Reference ChampionGoldPage}, Path=BindingContext.MostGold}" Minimum="0" Value="{Binding Stats.GoldEarned}" VerticalOptions="CenterAndExpand" ThumbColor="Transparent" Grid.Column="1" >
-                                        <Slider.Triggers>
-                                            <DataTrigger  TargetType="Slider" Binding="{Binding Stats.Win}" Value="true">
-                                                <Setter Property="MinimumTrackColor" Value="Blue"/>
-                                            </DataTrigger>
-                                            <DataTrigger  TargetType="Slider" Binding="{Binding Stats.Win}" Value="false">
-                                                <Setter Property="MinimumTrackColor" Value="Red"/>
-                                            </DataTrigger>
-                                        </Slider.Triggers>
-                                    </Slider>
-                                    <Label Text="{Binding Stats.GoldEarned}" Grid.Column="2"/>
-                                </Grid>
-                            </ContentView>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </Grid>
-        </StackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,*" Margin="2">
+                                <Frame CornerRadius="100"  Grid.Column="0" Padding="0" Grid.Row="0" Grid.RowSpan="2" IsClippedToBounds="True" HeightRequest="40" WidthRequest="40" Margin="0,0,3,0">
+                                    <Image Source="{Binding Champion.ChampionIcon}" Aspect="AspectFill" />
+                                </Frame>
+                                <Label Text="{Binding Stats.GoldEarned, StringFormat='{0:#,0}'}" Grid.Column="1" Grid.Row="0" />
+                                <ProgressBar Progress="{Binding Stats.TotalGoldEarnedProgress}"  Grid.Column="1" Grid.Row="1">
+                                    <ProgressBar.Triggers>
+                                        <DataTrigger  TargetType="ProgressBar" Binding="{Binding Stats.Win}" Value="true">
+                                            <Setter Property="ProgressColor" Value="Blue"/>
+                                        </DataTrigger>
+                                        <DataTrigger  TargetType="ProgressBar" Binding="{Binding Stats.Win}" Value="false">
+                                            <Setter Property="ProgressColor" Value="Red"/>
+                                        </DataTrigger>
+                                    </ProgressBar.Triggers>
+                                </ProgressBar>
+                            </Grid>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

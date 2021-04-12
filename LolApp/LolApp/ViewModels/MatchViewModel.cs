@@ -16,8 +16,9 @@ namespace LolApp.ViewModels
     public class MatchViewModel : BaseViewModel, IInitialize
     {
         public Match Match { get; set; }
-        public Match MatchAnalysisKill { get; set; }
-        public Match MatchAnalysisGold { get; set; }
+        public ObservableCollection<Participant> AnalysisKills { get; set; }
+        public ObservableCollection<Participant> AnalysisGold { get; set; }
+        public ObservableCollection<Participant> AnalysisDamage { get; set; }
         public Team WinningTeam { get; set; }
         public Team LosingTeam { get; set; }
         public int MostKills { get; set; }
@@ -38,8 +39,13 @@ namespace LolApp.ViewModels
                 WinningTeam = new Team();
                 LosingTeam = new Team();
                 Match = match;
-                MostKills = 0;
-                MostGold = 0;
+                AnalysisKills = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.Kills)));
+                AnalysisGold = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.GoldEarned)));
+                AnalysisDamage = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.TotalDamageDealt)));
+
+                MostKills = Match.Participants.Max(x=>x.Stats.Kills);
+                MostGold = Match.Participants.Max(x => x.Stats.GoldEarned);
+                MostDamage = Match.Participants.Max(x => x.Stats.TotalDamageDealt);
 
                 foreach (var participant in Match.Participants)
                 {
@@ -62,17 +68,11 @@ namespace LolApp.ViewModels
                     participant.Champion = ChampionService.GetChampion(participant.ChampionId);
                     participant.Spell1Icon = Utilis.GetSpell(participant.Spell1Id);
                     participant.Spell2Icon = Utilis.GetSpell(participant.Spell2Id);
-
-                    MostKills = participant.Stats.Kills > MostKills ? participant.Stats.Kills : MostKills;
-                    MostGold = participant.Stats.GoldEarned > MostGold ? participant.Stats.GoldEarned : MostGold;
-                    MostDamage = participant.Stats.TotalDamageDealt > MostDamage ? participant.Stats.TotalDamageDealt : MostDamage;
+                    participant.Stats.TotalKillsProgress = (float) participant.Stats.Kills / (float) MostKills;
+                    participant.Stats.TotalGoldEarnedProgress = (float) participant.Stats.GoldEarned / (float) MostGold;
+                    participant.Stats.TotalDamageDealtProgress = (float) participant.Stats.TotalDamageDealt / (float) MostDamage;
                 }
 
-                Match.Participants = new ObservableCollection<Participant>(Match.Participants.OrderByDescending(x => x.Stats.TotalDamageDealt));
-                MatchAnalysisGold = match;
-                MatchAnalysisGold.Participants = new ObservableCollection<Participant>(MatchAnalysisGold.Participants.OrderByDescending(x => x.Stats.GoldEarned));
-                MatchAnalysisKill = match;
-                MatchAnalysisKill.Participants = new ObservableCollection<Participant>(MatchAnalysisKill.Participants.OrderByDescending(x => x.Stats.Kills));
             }
         }
     }
