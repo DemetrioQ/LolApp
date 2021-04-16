@@ -36,6 +36,7 @@ namespace LolApp
 
         //Navigation parameters variables
         public const string MatchParam = "MatchParameter";
+        public const string SummonerParam = "SummonerParameter";
 
 
         public const string NaRankingApiUrl = "https://na1.api.riotgames.com/lol/league-exp/v4/entries";
