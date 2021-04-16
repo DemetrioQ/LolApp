@@ -60,6 +60,8 @@ namespace LolApp.Models
         [JsonPropertyName("bans")]
         public List<object> Bans { get; set; }
         public int Kills { get; set; }
+        public int Deaths { get; set; }
+        public int Assists { get; set; }
         public int Gold { get; set; }
         public int Damage { get; set; }
     }

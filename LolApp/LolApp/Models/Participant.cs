@@ -38,6 +38,8 @@ namespace LolApp.Models
 
         public string Spell2Icon { get; set; }
 
+        public bool IsPlayer { get; set; } = false;
+
     }
 
 

@@ -16,6 +16,8 @@ namespace LolApp.ViewModels
     public class MatchViewModel : BaseViewModel, IInitialize
     {
         public Match Match { get; set; }
+        public Summoner MainSummoner { get; set; }
+        public Participant MainParticipant { get; set; }
         public ObservableCollection<Participant> AnalysisKills { get; set; }
         public ObservableCollection<Participant> AnalysisGold { get; set; }
         public ObservableCollection<Participant> AnalysisDamage { get; set; }
@@ -34,11 +36,12 @@ namespace LolApp.ViewModels
 
         public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.TryGetValue(Config.MatchParam, out Match match))
+            if (parameters.TryGetValue(Config.MatchParam, out Match match) && parameters.TryGetValue(Config.SummonerParam, out Summoner summoner))
             {
+                Match = match;
+                MainSummoner = summoner;
                 WinningTeam = new Team();
                 LosingTeam = new Team();
-                Match = match;
                 AnalysisKills = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.Kills)));
                 AnalysisGold = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.GoldEarned)));
                 AnalysisDamage = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.TotalDamageDealt)));
@@ -53,6 +56,8 @@ namespace LolApp.ViewModels
                     {
                         WinningTeam.Participants.Add(participant);
                         WinningTeam.Kills += participant.Stats.Kills;
+                        WinningTeam.Deaths += participant.Stats.Deaths;
+                        WinningTeam.Assists += participant.Stats.Assists;
                         WinningTeam.Gold += participant.Stats.GoldEarned;
                         WinningTeam.Damage += participant.Stats.TotalDamageDealt;
                     }
@@ -60,8 +65,16 @@ namespace LolApp.ViewModels
                     {
                         LosingTeam.Participants.Add(participant);
                         LosingTeam.Kills += participant.Stats.Kills;
+                        LosingTeam.Deaths += participant.Stats.Deaths;
+                        LosingTeam.Assists += participant.Stats.Assists;
                         LosingTeam.Gold += participant.Stats.GoldEarned;
                         LosingTeam.Damage += participant.Stats.TotalDamageDealt;
+                    }
+
+                    if(participant.SummonerName == summoner.Name)
+                    {
+                        participant.IsPlayer = true;
+                        MainParticipant = participant;
                     }
 
                     participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
