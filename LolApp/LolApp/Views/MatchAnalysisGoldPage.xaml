@@ -6,7 +6,7 @@
              x:Name="ChampionGoldPage"
              >
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *" ColumnDefinitions="*,*" Margin="10">
+        <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*" Margin="10">
             <Label Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center">
                 <Label.FormattedText>
                     <FormattedString>
