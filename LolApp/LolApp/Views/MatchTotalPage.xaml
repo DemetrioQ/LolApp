@@ -12,9 +12,9 @@
                 ItemsSource="{Binding WinningTeam.Participants}"
                 >
                 <CollectionView.Header>
-                    <Grid ColumnDefinitions="Auto, *, Auto">
+                    <Grid ColumnDefinitions="50, *, Auto">
                         <BoxView Color="LightBlue" Grid.Column="0" Grid.ColumnSpan="3"/>
-                        <Label Text="Win" TextColor="Blue" Grid.Column="0" VerticalTextAlignment="Center"/>
+                        <Label Text="Win" TextColor="Blue" Grid.Column="0" FontSize="17" VerticalTextAlignment="Center" Margin="5,0,0,0"/>
                         <Label Grid.Column="1" VerticalTextAlignment="Center">
                             <Label.Text>
                                 <MultiBinding StringFormat="{} {0}/{1}/{2}">
@@ -38,9 +38,9 @@
                 ItemsSource="{Binding LosingTeam.Participants}"
                 >
                  <CollectionView.Header>
-                    <Grid ColumnDefinitions="Auto, *, Auto">
+                    <Grid ColumnDefinitions="50, *, Auto">
                         <BoxView Color="LightPink" Grid.Column="0" Grid.ColumnSpan="3"/>
-                        <Label Text="Loss" TextColor="Red"  Grid.Column="0"  VerticalTextAlignment="Center"/>
+                        <Label Text="Loss" TextColor="Red"  Grid.Column="0"  FontSize="17" VerticalTextAlignment="Center" Margin="5,0,0,0"/>
                         <Label Grid.Column="1"  VerticalTextAlignment="Center">
                             <Label.Text>
                                 <MultiBinding StringFormat="{} {0}/{1}/{2}">
