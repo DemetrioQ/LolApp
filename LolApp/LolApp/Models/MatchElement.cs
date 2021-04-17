@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LolApp.Models
 {
-    public class MatchElement
+    public class MatchElement : BaseModel
     {
         public string PlatformId { get; set; }
         public int GameId { get; set; }
@@ -17,7 +17,7 @@ namespace LolApp.Models
         public string Lane { get; set; }
     }
 
-    public class MatchList
+    public class MatchList : BaseModel
     {
         public ObservableCollection<MatchElement> Matches { get; set; }
         public int StartIndex { get; set; }

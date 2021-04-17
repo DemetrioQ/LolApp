@@ -19,7 +19,9 @@ namespace LolApp.ViewModels
         public Summoner Summoner { get; set; }
         public bool Show { get; set; } = false;
         public string SummonerName { get; set; }
-       
+        public bool IsBusy { get;set; }
+
+
         private ISummonerApiService _summonerApiService;
 
         private INavigationService _navigationService;
@@ -51,9 +53,10 @@ namespace LolApp.ViewModels
 
         private async void GetSummonerAsync()
         {
-
+            
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
+                IsBusy = true;
                 var summoner = await _summonerApiService.GetSummonerAsync(SummonerName);
 
                 if (summoner == null)
@@ -67,6 +70,7 @@ namespace LolApp.ViewModels
                 }
 
                 Summoner = summoner;
+                IsBusy = false;
             }
             else
             {

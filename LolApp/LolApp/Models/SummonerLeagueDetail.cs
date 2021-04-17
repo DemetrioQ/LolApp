@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LolApp.Models
 {
-    public class SummonerLeagueDetail
+    public class SummonerLeagueDetail : BaseModel
     {
         public string LeagueId { get; set; }
         public string QueueType { get; set; }

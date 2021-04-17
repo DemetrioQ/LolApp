@@ -6,6 +6,7 @@
              Title="Total"
              >
     <ContentPage.Content>
+
         <StackLayout Margin="0" Padding="0">
             <CollectionView
                 Margin="0"

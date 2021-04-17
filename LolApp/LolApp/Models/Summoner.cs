@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LolApp.Models
 {
-    public class Summoner
+    public class Summoner : BaseModel
     {
         public string Id { get; set; }
         public string AccountId { get; set; }
