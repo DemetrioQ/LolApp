@@ -3,7 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LolApp.Views.MatchTabbedPage"
            xmlns:local="clr-namespace:LolApp.Views"
+            
             >
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="*,Auto,Auto,Auto" RowDefinitions="*">
+            <Label TextColor="White" FontSize="Large" FontAttributes="Bold" Grid.Column="0">
+                <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding MainParticipant.Stats.Win}" Value="true">
+                        <Setter Property="Text" Value="Win" /> 
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding MainParticipant.Stats.Win}" Value="false">
+                        <Setter Property="Text" Value="Loss" />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+            <Label Text="{Binding Match.GameMode}" TextColor="White" Grid.Column="1"/>
+            <Label Text="{Binding Match.GameDurationTime, StringFormat='{}{0:hh\\:mm}'}" TextColor="White" Grid.Column="2"/>
+        </Grid>
+    </NavigationPage.TitleView>
   <!--Pages can be added as references or inline-->
     <TabbedPage.Children>
         <local:MatchTotalPage/>

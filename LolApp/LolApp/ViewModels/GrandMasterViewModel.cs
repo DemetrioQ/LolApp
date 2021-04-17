@@ -39,7 +39,7 @@ namespace LolApp.ViewModels
             else
             {
                 // Alert
-                await AlertService.DisplayAlertAsync("No connection :( ", "please try again when your are conected.", "Ok", null);
+                await AlertService.DisplayAlertAsync(AlertConstant.NoInternetConnectionTitle, AlertConstant.NoInternetConnectionDescription, AlertConstant.NoInternetConnectionConfirm);
             }
 
         }

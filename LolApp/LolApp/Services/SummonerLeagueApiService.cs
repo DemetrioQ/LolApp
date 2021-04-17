@@ -31,7 +31,6 @@ namespace LolApp.Services
                 var jsonSummoner = await response.Content.ReadAsStringAsync();
 
                 summonerLeagueDetail = JsonConvert.DeserializeObject<List<SummonerLeagueDetail>>(jsonSummoner);
-
                 
             }
 

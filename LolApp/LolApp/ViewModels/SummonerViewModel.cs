@@ -58,7 +58,7 @@ namespace LolApp.ViewModels
 
                 if (summoner == null)
                 {
-                    await AlertService.DisplayAlertAsync("Summoner not found", "No such summoner was found, please try another one.", "Ok");
+                    await AlertService.DisplayAlertAsync(AlertConstant.SummonerNotFoundTitle,AlertConstant.SummonerNotFoundDescription,AlertConstant.SummonerNotFoundConfirm);
                     Show = false;
                 }
                 else
@@ -70,7 +70,7 @@ namespace LolApp.ViewModels
             }
             else
             {
-                await AlertService.DisplayAlertAsync("No internet connection", "No internet connection detected", "ok");
+                await AlertService.DisplayAlertAsync(AlertConstant.NoInternetConnectionTitle, AlertConstant.NoInternetConnectionDescription, AlertConstant.NoInternetConnectionConfirm);
             }
 
 

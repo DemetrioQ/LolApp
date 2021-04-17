@@ -47,7 +47,7 @@ namespace LolApp.ViewModels
             }
             else
             {
-                await AlertService.DisplayAlertAsync("No internet connection", "No internet connection detected", "ok");
+                await AlertService.DisplayAlertAsync(AlertConstant.NoInternetConnectionTitle, AlertConstant.NoInternetConnectionDescription, AlertConstant.NoInternetConnectionConfirm);
             }
         }
 
@@ -61,7 +61,7 @@ namespace LolApp.ViewModels
             }
             else
             {
-                await AlertService.DisplayAlertAsync("No internet connection", "No internet connection detected", "ok");
+                await AlertService.DisplayAlertAsync(AlertConstant.NoInternetConnectionTitle, AlertConstant.NoInternetConnectionDescription, AlertConstant.NoInternetConnectionConfirm);
             }
         }
     }

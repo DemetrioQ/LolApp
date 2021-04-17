@@ -148,4 +148,55 @@
   <ItemGroup>
     <BundleResource Include="Resources\trophy.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Platinum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Silver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Master.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Iron.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Grandmaster.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Diamond.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Challenger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Emblem_Bronze.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\RedBaron.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\RedDragon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\RedTower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Kills.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BlueTower.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BlueDragons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\BlueBaron.png" />
+  </ItemGroup>
 </Project>

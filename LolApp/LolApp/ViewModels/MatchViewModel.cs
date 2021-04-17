@@ -92,10 +92,37 @@ namespace LolApp.ViewModels
                     participant.IsPlayer = true;
                     MainParticipant = participant;
                     RuneService.GetSlots(MainParticipant);
+
+                    if (WinningTeam.Participants.Contains(MainParticipant))
+                    {
+                        var tempWinning = Match.Teams.First(x => x.TeamId == MainParticipant.TeamId);
+                        WinningTeam.TowerKills = tempWinning.TowerKills;
+                        WinningTeam.BaronKills = tempWinning.BaronKills;
+                        WinningTeam.DragonKills = tempWinning.DragonKills;
+
+                        var tempLosing = Match.Teams.First(x => x.TeamId != tempWinning.TeamId);
+                        LosingTeam.TowerKills = tempLosing.TowerKills;
+                        LosingTeam.BaronKills = tempLosing.BaronKills;
+                        LosingTeam.DragonKills = tempLosing.DragonKills;
+                    }
+                    else
+                    {
+                        var tempLosing = Match.Teams.First(x => x.TeamId == MainParticipant.TeamId);
+                        LosingTeam.TowerKills = tempLosing.TowerKills;
+                        LosingTeam.BaronKills = tempLosing.BaronKills;
+                        LosingTeam.DragonKills = tempLosing.DragonKills;
+
+
+                        var tempWinning = Match.Teams.First(x => x.TeamId != tempLosing.TeamId);
+                        WinningTeam.TowerKills = tempWinning.TowerKills;
+                        WinningTeam.BaronKills = tempWinning.BaronKills;
+                        WinningTeam.DragonKills = tempWinning.DragonKills;
+                    }
+                    
                 }
 
                 participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
-                participant.Champion = ChampionService.GetChampion(participant.ChampionId);
+                
                 participant.Spell1Icon = Utils.GetSpell(participant.Spell1Id);
                 participant.Spell2Icon = Utils.GetSpell(participant.Spell2Id);
                 participant.Stats.TotalKillsProgress = (float)participant.Stats.Kills / (float)MostKills;

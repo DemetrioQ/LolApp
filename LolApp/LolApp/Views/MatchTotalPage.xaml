@@ -13,10 +13,11 @@
                 
                 >
                 <CollectionView.Header>
-                    <Grid ColumnDefinitions="50, *, Auto">
-                        <BoxView Color="LightBlue" Grid.Column="0" Grid.ColumnSpan="3"/>
-                        <Label Text="Win" TextColor="Blue" Grid.Column="0" FontSize="17" VerticalTextAlignment="Center" Margin="5,0,0,0"/>
-                        <Label Grid.Column="1" VerticalTextAlignment="Center">
+                    <Grid ColumnDefinitions="50, Auto, *, Auto, Auto, Auto, Auto, Auto, Auto" RowDefinitions="35" Margin="2">
+                        <BoxView Color="LightBlue" Grid.Column="0" Grid.ColumnSpan="9"/>
+                        <Label Text="Win" TextColor="{StaticResource Key=WinningTeamColor}" Grid.Column="0" FontSize="17" VerticalTextAlignment="Center" Margin="5,0,0,0"/>
+                        <Image Source="Kills" Grid.Column="1"/>
+                        <Label Grid.Column="2" VerticalTextAlignment="Center">
                             <Label.Text>
                                 <MultiBinding StringFormat="{} {0}/{1}/{2}">
                                     <Binding Path="WinningTeam.Kills"/>
@@ -25,6 +26,12 @@
                                 </MultiBinding>
                             </Label.Text>
                         </Label>
+                        <Image Source="BlueBaron" Grid.Column="3" HeightRequest="20"/>
+                        <Label Text="{Binding WinningTeam.BaronKills}" Grid.Column="4" VerticalTextAlignment="Center" TextColor="black" FontSize="15"/>
+                        <Image Source="BlueDragons" Grid.Column="5" HeightRequest="20"/>
+                        <Label Text="{Binding WinningTeam.DragonKills}" Grid.Column="6" VerticalTextAlignment="Center" TextColor="black" FontSize="15"/>
+                        <Image Source="BlueTower" Grid.Column="7" HeightRequest="20"/>
+                        <Label Text="{Binding WinningTeam.TowerKills}" Grid.Column="8" VerticalTextAlignment="Center" Margin="0,0,5,0" TextColor="black" FontSize="15"/>
                     </Grid>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
@@ -39,10 +46,11 @@
                 ItemsSource="{Binding LosingTeam.Participants}"
                 >
                  <CollectionView.Header>
-                    <Grid ColumnDefinitions="50, *, Auto">
-                        <BoxView Color="LightPink" Grid.Column="0" Grid.ColumnSpan="3"/>
-                        <Label Text="Loss" TextColor="Red"  Grid.Column="0"  FontSize="17" VerticalTextAlignment="Center" Margin="5,0,0,0"/>
-                        <Label Grid.Column="1"  VerticalTextAlignment="Center">
+                    <Grid ColumnDefinitions="50, Auto, *, Auto, Auto, Auto, Auto, Auto, Auto" RowDefinitions="35" Margin="2">
+                        <BoxView Color="LightPink" Grid.Column="0" Grid.ColumnSpan="9"/>
+                        <Label Text="Loss" TextColor="{StaticResource Key=LosingTeamColor}"  Grid.Column="0"  FontSize="17" VerticalTextAlignment="Center" Margin="5,0,0,0"/>
+                        <Image Source="Kills" Grid.Column="1"/>
+                        <Label Grid.Column="2" VerticalTextAlignment="Center">
                             <Label.Text>
                                 <MultiBinding StringFormat="{} {0}/{1}/{2}">
                                     <Binding Path="LosingTeam.Kills"/>
@@ -51,6 +59,12 @@
                                 </MultiBinding>
                             </Label.Text>
                         </Label>
+                        <Image Source="RedBaron" Grid.Column="3" HeightRequest="20"/>
+                        <Label Text="{Binding LosingTeam.BaronKills}" Grid.Column="4" VerticalTextAlignment="Center"  TextColor="black" FontSize="15"/>
+                        <Image Source="RedDragon" Grid.Column="5" HeightRequest="20"/>
+                        <Label Text="{Binding LosingTeam.DragonKills}" Grid.Column="6" VerticalTextAlignment="Center"  TextColor="black" FontSize="15"/>
+                        <Image Source="RedTower" Grid.Column="7" HeightRequest="20"/>
+                        <Label Text="{Binding LosingTeam.TowerKills}" Grid.Column="8" VerticalTextAlignment="Center" Margin="0,0,5,0" TextColor="black" FontSize="15"/>
                     </Grid>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>

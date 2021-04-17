@@ -7,6 +7,9 @@
         <Style x:Key="CustomButton" TargetType="Button">
             <Setter Property="BackgroundColor" Value="OrangeRed"/>
             <Setter Property="CornerRadius" Value="30"/>
-            </Style>
+        </Style>
+        <Color x:Key="WinningTeamColor">Blue</Color>
+        <Color x:Key="LosingTeamColor">Red</Color>
+
     </prism:PrismApplication.Resources>
 </prism:PrismApplication>

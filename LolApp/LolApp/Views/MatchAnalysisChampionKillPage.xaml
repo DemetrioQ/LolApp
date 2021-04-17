@@ -9,18 +9,18 @@
             <Label Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Win Team" TextColor="Blue"/>
+                        <Span Text="Win Team" TextColor="{StaticResource Key=WinningTeamColor}"/>
                         <Span Text="&#x0a;"/>
-                        <Span Text="{Binding WinningTeam.Kills}" TextColor="Blue" FontAttributes="Bold" FontSize="Large"/>
+                        <Span Text="{Binding WinningTeam.Kills}" TextColor="{StaticResource Key=WinningTeamColor}" FontAttributes="Bold" FontSize="Large"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
             <Label Grid.Column="1" Grid.Row="0" HorizontalTextAlignment="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Loss Team" TextColor="Red"/>
+                        <Span Text="Loss Team" TextColor="{StaticResource Key=LosingTeamColor}"/>
                         <Span Text="&#x0a;"/>
-                        <Span Text="{Binding LosingTeam.Kills}" TextColor="Red" FontAttributes="Bold" FontSize="Large"/>
+                        <Span Text="{Binding LosingTeam.Kills}" TextColor="{StaticResource Key=LosingTeamColor}" FontAttributes="Bold" FontSize="Large"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -54,10 +54,10 @@
                                 <ProgressBar Progress="{Binding Stats.TotalKillsProgress}"  Grid.Column="1" Grid.Row="1">
                                     <ProgressBar.Triggers>
                                         <DataTrigger  TargetType="ProgressBar" Binding="{Binding Stats.Win}" Value="true">
-                                            <Setter Property="ProgressColor" Value="Blue"/>
+                                            <Setter Property="ProgressColor" Value="{StaticResource Key=WinningTeamColor}"/>
                                         </DataTrigger>
                                         <DataTrigger  TargetType="ProgressBar" Binding="{Binding Stats.Win}" Value="false">
-                                            <Setter Property="ProgressColor" Value="Red"/>
+                                            <Setter Property="ProgressColor" Value="{StaticResource Key=LosingTeamColor}"/>
                                         </DataTrigger>
                                     </ProgressBar.Triggers>
                                 </ProgressBar>
