@@ -13,7 +13,7 @@ namespace LolApp
     public static class Config
     {
         //Api Key
-        public const string ApiKey = "RGAPI-edf11a1a-e808-433e-b1cb-c3c814bf0a34";
+        public const string ApiKey = "Api Key Here";
 
 
         //Ranking data endpoints
