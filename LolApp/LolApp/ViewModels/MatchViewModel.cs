@@ -28,65 +28,82 @@ namespace LolApp.ViewModels
         public int MostDamage { get; set; }
         public string ParticipantTeamColor { get; set; }
         IChampionService ChampionService { get; }
-        
-        public MatchViewModel(IPageDialogService alertService, IChampionService championService) : base(alertService)
+        IRuneService RuneService { get; }
+
+        public MatchViewModel(IPageDialogService alertService, IChampionService championService, IRuneService runeService) : base(alertService)
         {
             ChampionService = championService;
+            RuneService = runeService;
         }
 
         public void Initialize(INavigationParameters parameters)
         {
             if (parameters.TryGetValue(NavigationConstant.MatchParam, out Match match) && parameters.TryGetValue(NavigationConstant.SummonerParam, out Summoner summoner))
             {
-                Match = match;
-                MainSummoner = summoner;
-                WinningTeam = new Team();
-                LosingTeam = new Team();
-                AnalysisKills = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.Kills)));
-                AnalysisGold = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.GoldEarned)));
-                AnalysisDamage = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.TotalDamageDealt)));
+                GetMatchData(match, summoner);
+            }
+        }
+        public void GetMatchData(Match match, Summoner summoner)
+        {
+            Match = match;
+            MainSummoner = summoner;
+            WinningTeam = new Team();
+            LosingTeam = new Team();
+            AnalysisKills = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.Kills)));
+            AnalysisGold = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.GoldEarned)));
+            AnalysisDamage = new ObservableCollection<Participant>(Match.Participants.OrderByDescending((x => x.Stats.TotalDamageDealt)));
 
-                MostKills = Match.Participants.Max(x=>x.Stats.Kills);
-                MostGold = Match.Participants.Max(x => x.Stats.GoldEarned);
-                MostDamage = Match.Participants.Max(x => x.Stats.TotalDamageDealt);
+            MostKills = Match.Participants.Max(x => x.Stats.Kills);
+            MostGold = Match.Participants.Max(x => x.Stats.GoldEarned);
+            MostDamage = Match.Participants.Max(x => x.Stats.TotalDamageDealt);
 
-                foreach (var participant in Match.Participants)
+            foreach (var participant in Match.Participants)
+            {
+                participant.Items = new ObservableCollection<string>();
+                participant.Items.Add(participant.Stats.Item0Icon);
+                participant.Items.Add(participant.Stats.Item1Icon);
+                participant.Items.Add(participant.Stats.Item2Icon);
+                participant.Items.Add(participant.Stats.Item3Icon);
+                participant.Items.Add(participant.Stats.Item4Icon);
+                participant.Items.Add(participant.Stats.Item5Icon);
+                participant.Items.Add(participant.Stats.Item6Icon);
+
+                if (participant.Stats.Win)
                 {
-                    if (participant.Stats.Win)
-                    {
-                        WinningTeam.Participants.Add(participant);
-                        WinningTeam.Kills += participant.Stats.Kills;
-                        WinningTeam.Deaths += participant.Stats.Deaths;
-                        WinningTeam.Assists += participant.Stats.Assists;
-                        WinningTeam.Gold += participant.Stats.GoldEarned;
-                        WinningTeam.Damage += participant.Stats.TotalDamageDealt;
-                    }
-                    else
-                    {
-                        LosingTeam.Participants.Add(participant);
-                        LosingTeam.Kills += participant.Stats.Kills;
-                        LosingTeam.Deaths += participant.Stats.Deaths;
-                        LosingTeam.Assists += participant.Stats.Assists;
-                        LosingTeam.Gold += participant.Stats.GoldEarned;
-                        LosingTeam.Damage += participant.Stats.TotalDamageDealt;
-                    }
-
-                    if(participant.SummonerName == summoner.Name)
-                    {
-                        participant.IsPlayer = true;
-                        MainParticipant = participant;
-                    }
-
-                    participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
-                    participant.Champion = ChampionService.GetChampion(participant.ChampionId);
-                    participant.Spell1Icon = Utils.GetSpell(participant.Spell1Id);
-                    participant.Spell2Icon = Utils.GetSpell(participant.Spell2Id);
-                    participant.Stats.TotalKillsProgress = (float) participant.Stats.Kills / (float) MostKills;
-                    participant.Stats.TotalGoldEarnedProgress = (float) participant.Stats.GoldEarned / (float) MostGold;
-                    participant.Stats.TotalDamageDealtProgress = (float) participant.Stats.TotalDamageDealt / (float) MostDamage;
+                    WinningTeam.Participants.Add(participant);
+                    WinningTeam.Kills += participant.Stats.Kills;
+                    WinningTeam.Deaths += participant.Stats.Deaths;
+                    WinningTeam.Assists += participant.Stats.Assists;
+                    WinningTeam.Gold += participant.Stats.GoldEarned;
+                    WinningTeam.Damage += participant.Stats.TotalDamageDealt;
+                }
+                else
+                {
+                    LosingTeam.Participants.Add(participant);
+                    LosingTeam.Kills += participant.Stats.Kills;
+                    LosingTeam.Deaths += participant.Stats.Deaths;
+                    LosingTeam.Assists += participant.Stats.Assists;
+                    LosingTeam.Gold += participant.Stats.GoldEarned;
+                    LosingTeam.Damage += participant.Stats.TotalDamageDealt;
                 }
 
+                if (participant.SummonerName == summoner.Name)
+                {
+                    participant.IsPlayer = true;
+                    MainParticipant = participant;
+                    RuneService.GetSlots(MainParticipant);
+                }
+
+                participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
+                participant.Champion = ChampionService.GetChampion(participant.ChampionId);
+                participant.Spell1Icon = Utils.GetSpell(participant.Spell1Id);
+                participant.Spell2Icon = Utils.GetSpell(participant.Spell2Id);
+                participant.Stats.TotalKillsProgress = (float)participant.Stats.Kills / (float)MostKills;
+                participant.Stats.TotalGoldEarnedProgress = (float)participant.Stats.GoldEarned / (float)MostGold;
+                participant.Stats.TotalDamageDealtProgress = (float)participant.Stats.TotalDamageDealt / (float)MostDamage;
             }
+
         }
     }
 }
+

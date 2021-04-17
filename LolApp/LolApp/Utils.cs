@@ -88,6 +88,5 @@ namespace LolApp
             return spell;
         }
 
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -37,8 +38,14 @@ namespace LolApp.Models
         public string Spell1Icon { get; set; }
 
         public string Spell2Icon { get; set; }
+        public ObservableCollection<string> Items { get; set; }
+        public RuneRoot MainRuneRoot { get; set; }
+        public RuneRoot SecondaryRuneRoot { get; set; }
+        public ObservableCollection<Rune> MainRunes { get; set; }
+        public ObservableCollection<Rune> SecondaryRunes { get; set; }
 
         public bool IsPlayer { get; set; } = false;
+
 
     }
 

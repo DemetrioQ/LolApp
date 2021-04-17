@@ -13,11 +13,11 @@ namespace LolApp
     public static class Config
     {
         //Api Key
-        public const string ApiKey = "RGAPI-cddd1495-e859-4851-90ec-7b7275c039f9";
+        public const string ApiKey = "RGAPI-64e9dd42-02a2-413c-92f0-4c42ad7e60d8";
 
+
+        //Ranking data endpoints
         public const string NaRankingApiUrl = "https://na1.api.riotgames.com/lol/league-exp/v4/entries";
-
-        public const string LanStatusApiUrl = "https://la1.api.riotgames.com/lol/league/v4/grandmasterleagues/by-queue";
 
         //Summoner data endpoints of all regions
         public const string LatinAmericaNorthMatchesApiUrl = "https://la1.api.riotgames.com/lol/match/v4/";
@@ -38,16 +38,21 @@ namespace LolApp
         //Images Api 
         public const string ProfileIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/profileicon/";
         public const string ChampionIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/champion/";
-        public const string ItemIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/item/";
+        public const string ItemIconUrl = "https://ddragon.leagueoflegends.com/cdn/10.1.1/img/item/";
         public const string SummonerSpellsIconUrl = "https://ddragon.leagueoflegends.com/cdn/11.7.1/img/spell/";
+        public const string RuneIconUrl = "https://ddragon.canisback.com/img/";
 
 
         //Match Api Endpoint
-        public const string MatchApiUrl = "https://la1.api.riotgames.com/lol/match/v4";
+        public const string LanMatchApiUrl = "https://la1.api.riotgames.com/lol/match/v4";
 
 
         //Champion Api
         public const string ChampionsApiUrl = "http://ddragon.leagueoflegends.com/cdn/11.7.1/data/en_US/champion.json";
+
+        //Rune Api
+        public const string RuneApiUrl = "http://ddragon.leagueoflegends.com/cdn/11.7.1/data/en_US/runesReforged.json";
+
 
     }
 }

@@ -11,7 +11,14 @@ namespace LolApp.Models
         public string Puuid { get; set; }
         public string Name { get; set; }
         public int ProfileIconId { get; set; }
-        public string ProfileIcon => $"{Config.ProfileIconUrl}{ProfileIconId}.png";
+        public string ProfileIcon
+        {
+            get
+            {
+                return $"{Config.ProfileIconUrl}{ProfileIconId}.png";
+            }
+        }
+        
         public long RevisionDate { get; set; }
         public int SummonerLevel { get; set; }
     }

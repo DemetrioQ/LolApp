@@ -15,24 +15,101 @@ namespace LolApp.Models
 
         [JsonPropertyName("item0")]
         public int Item0 { get; set; }
+        public string Item0Icon
+        {
+            get
+            {
+                if (Item0 == 0)
+                {
+                    return null;
+                }
+                return $"{Config.ItemIconUrl}{Item0}.png";
+            }
+        }
 
         [JsonPropertyName("item1")]
         public int Item1 { get; set; }
+        public string Item1Icon
+        {
+            get
+            {
+                if (Item1 == 0)
+                {
+                    return null;
+                }
+                return $"{Config.ItemIconUrl}{Item1}.png";
+            }
+        }
 
         [JsonPropertyName("item2")]
         public int Item2 { get; set; }
+        public string Item2Icon
+        {
+            get
+            {
+                if (Item2 == 0)
+                {
+                    return null;
+                }
+                return $"{Config.ItemIconUrl}{Item2}.png";
+            }
+        }
 
         [JsonPropertyName("item3")]
         public int Item3 { get; set; }
+        public string Item3Icon
+        {
+            get
+            {
+                if(Item3 == 0)
+                {
+                    return null;
+                }
+                return $"{Config.ItemIconUrl}{Item3}.png";
+            }
+        }
 
         [JsonPropertyName("item4")]
         public int Item4 { get; set; }
+        public string Item4Icon
+        {
+            get
+            {
+                if (Item4 == 0)
+                {
+                    return null;
+                }
+                return $"{Config.ItemIconUrl}{Item4}.png";
+            }
+        }
 
         [JsonPropertyName("item5")]
         public int Item5 { get; set; }
+        public string Item5Icon
+        {
+            get
+            {
+                if (Item5 == 0)
+                {
+                    return null;
+                }
+                return $"{Config.ItemIconUrl}{Item5}.png";
+            }
+        }
 
         [JsonPropertyName("item6")]
         public int Item6 { get; set; }
+        public string Item6Icon
+        {
+            get
+            {
+                if (Item6 == 0)
+                {
+                    return null;
+                }
+                return $"{Config.ItemIconUrl}{Item6}.png";
+            }
+        }
 
         [JsonPropertyName("kills")]
         public int Kills { get; set; }
