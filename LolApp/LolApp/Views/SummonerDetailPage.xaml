@@ -1,10 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LolApp.Views.SummonerDetailPage">
+             x:Class="LolApp.Views.SummonerDetailPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
     <ContentPage.Content>
-        <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,2*,*" BackgroundColor="White">
+        <Grid RowDefinitions="2*,*,*" ColumnDefinitions="*,*,*,*,*,*" BackgroundColor="White">
+
+
+
+            <StackLayout Grid.Row="0" 
+                   Margin="30,0,15,120"
+                   Grid.Column="0" 
+                   Grid.ColumnSpan="3"
+                   VerticalOptions="End"
+                   HorizontalOptions="Center">
+                <controls:CircleImage Source="{Binding Summoner.ProfileIcon}" WidthRequest="160" HeightRequest="160"/>
+            </StackLayout>
+
+            <Label
+                Grid.Column="4" 
+                Grid.ColumnSpan="3" 
+                Margin="0,0,0,175" 
+                FontSize="30" 
+                TextColor="Black" 
+                VerticalOptions="Center" 
+                FontAttributes="Bold"
+                Text="{Binding Summoner.Name}"/>
             
+            
+
+            <Button 
+                Grid.Column="3" 
+                Grid.ColumnSpan="3" 
+                Margin="30,0,0,50" 
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                TextColor="Black"
+                Style="{StaticResource CustomButton}"
+                Text="Refresh"/>
+
+
+            <StackLayout Grid.Row="0" Grid.ColumnSpan="7" Margin="20,180,20,0" BackgroundColor="AntiqueWhite">
+                <Image Source="{Binding SummonerDetailList[0].TierImage}" HeightRequest="100" Margin="0,0,100,0" HorizontalOptions="Start"/>
+                
+            </StackLayout>
+
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding SummonerDetailList[0].Rank}" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,75" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding SummonerDetailList[0].Wins}" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,45" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="{Binding SummonerDetailList[0].Losses}" HorizontalOptions="Start" VerticalOptions="End" Margin="0,0,0,20" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+
+
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5" Text="SOLO" HorizontalOptions="Start" VerticalOptions="End" Margin="165,0,0,75" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="Wins" HorizontalOptions="Start" VerticalOptions="End" Margin="40,0,0,45" FontSize="20" TextColor="Black" />
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" Text="Losses" HorizontalOptions="Start" VerticalOptions="End" Margin="40,0,0,20" FontSize="20" TextColor="Black" />
+
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5" Text="{Binding SummonerDetailList[0].WinRate}" HorizontalOptions="Start" VerticalOptions="End" Margin="165,0,0,45" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5" Text="%" HorizontalOptions="Start" VerticalOptions="End" Margin="215,0,0,45" FontSize="20" TextColor="Black" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="5" Text="Win rate" HorizontalOptions="Start" VerticalOptions="End" Margin="165,0,0,20" FontSize="20" TextColor="Black" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

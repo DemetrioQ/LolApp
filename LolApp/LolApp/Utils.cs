@@ -4,8 +4,42 @@ using System.Text;
 
 namespace LolApp
 {
-    public class Utilis
+    public static class Utils
     {
+        public static string GetRankedEmblemsByName(string emblemName)
+        {
+            
+            switch (emblemName)
+            {
+                case "BRONZE":
+                    return "Emblem_Bronze.png";
+
+                case "IRON":
+                    return "Emblem_Iron.png";
+
+                case "SILVER":
+                    return "Emblem_Silver.png";
+
+                case "GOLD":
+                    return "Emblem_Gold.png";
+
+                case "PLATINUM":
+                    return "Emblem_Platinum.png";
+
+                case "DIAMOND":
+                    return "Emblem_Diamond.png";
+
+                case "GRANDMASTER":
+                    return "Emblem_Grandmaster.png";
+
+                case "CHALLENGER":
+                    return "Emblem_Challenger.png";
+
+                default: return "N/A";
+            }
+        }
+
+
         public static string GetSpell(int id)
         {
             string spell = Config.SummonerSpellsIconUrl;

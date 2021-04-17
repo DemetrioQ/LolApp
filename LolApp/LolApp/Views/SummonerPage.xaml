@@ -64,7 +64,7 @@
                 Grid.Row="1" 
                 Grid.Column="2" 
                 Text="See Details" 
-                Command="{Binding GetSummonerCommand}" 
+                Command="{Binding SummonerDetailCommand}" 
                 HorizontalOptions="Center" 
                 VerticalOptions="End"
                 Margin="0,20,10,30" 

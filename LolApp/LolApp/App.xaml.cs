@@ -19,42 +19,45 @@ namespace LolApp
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            //await NavigationService.NavigateAsync($"/{Config.SummonerPage}");   
+            //await NavigationService.NavigateAsync($"/{NavigationConstant.SummonerPage}");   
             StreamReader strm = new StreamReader(Android.App.Application.Context.Assets.Open("MatchTest.json"));
             var response = strm.ReadToEnd();
 
             Match match = JsonConvert.DeserializeObject<Match>(response);
 
             var parameters = new NavigationParameters();
-            parameters.Add(Config.MatchParam, match);
+            parameters.Add(NavigationConstant.MatchParam, match);
 
-            await NavigationService.NavigateAsync($"{Config.MatchTabbedPage}", parameters);
+            //MatchTabbedPage
+
+            await NavigationService.NavigateAsync($"Nav/{NavigationConstant.SummonerPage}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<ILolIconsApiService, LolIconsApiService>();
+            containerRegistry.Register<ISummonerLeagueApiService, SummonerLeagueApiService>();
             containerRegistry.Register<ISummonerApiService, SummonerApiService>();
             containerRegistry.Register<IRankingApiService, RankingApiService>();
             containerRegistry.Register<IStatusApiService, StatusApiService>();
             containerRegistry.Register<ISerializerService, SerializerService>();
             containerRegistry.RegisterSingleton<IChampionService, ChampionService>();
 
-            containerRegistry.RegisterForNavigation<NavigationPage>(Config.NavigationPage);
-            containerRegistry.RegisterForNavigation<MainTabbedPage>(Config.MainTabbedPage);
-            containerRegistry.RegisterForNavigation<MatchTabbedPage, MatchViewModel>(Config.MatchTabbedPage);
-            containerRegistry.RegisterForNavigation<MatchAnalysisTabbedPage>(Config.MatchAnalysisTabbedPage);
+            containerRegistry.RegisterForNavigation<NavigationPage>(NavigationConstant.NavigationPage);
+            containerRegistry.RegisterForNavigation<MainTabbedPage>(NavigationConstant.MainTabbedPage);
+            containerRegistry.RegisterForNavigation<MatchTabbedPage, MatchViewModel>(NavigationConstant.MatchTabbedPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisTabbedPage>(NavigationConstant.MatchAnalysisTabbedPage);
 
-            containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(Config.RankingPage);
-            containerRegistry.RegisterForNavigation<SummonerPage, SummonerViewModel>(Config.SummonerPage);
-            containerRegistry.RegisterForNavigation<SummonerDetailPage, SummonerDetailViewModel>(Config.SummonerDetailPage);
-            containerRegistry.RegisterForNavigation<GrandMasterPage, GrandMasterViewModel>(Config.GrandMasterPage);
+            containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(NavigationConstant.RankingPage);
+            containerRegistry.RegisterForNavigation<SummonerPage, SummonerViewModel>(NavigationConstant.SummonerPage);
+            containerRegistry.RegisterForNavigation<SummonerDetailPage, SummonerDetailViewModel>(NavigationConstant.SummonerDetailPage);
+            containerRegistry.RegisterForNavigation<GrandMasterPage, GrandMasterViewModel>(NavigationConstant.GrandMasterPage);
 
-            containerRegistry.RegisterForNavigation<MatchTotalPage>(Config.MatchTotalPage);
-            containerRegistry.RegisterForNavigation<MatchBuildPage>(Config.MatchBuildPage);
-            containerRegistry.RegisterForNavigation<MatchAnalysisChampionKillPage>(Config.MatchAnalysisChampionKillsPage);
-            containerRegistry.RegisterForNavigation<MatchAnalysisGoldPage>(Config.MatchAnalysisGoldPage);
-            containerRegistry.RegisterForNavigation<MatchAnalysisDamageDealtPage>(Config.MatchAnalysisDamageDealtPage);
+            containerRegistry.RegisterForNavigation<MatchTotalPage>(NavigationConstant.MatchTotalPage);
+            containerRegistry.RegisterForNavigation<MatchBuildPage>(NavigationConstant.MatchBuildPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisChampionKillPage>(NavigationConstant.MatchAnalysisChampionKillsPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisGoldPage>(NavigationConstant.MatchAnalysisGoldPage);
+            containerRegistry.RegisterForNavigation<MatchAnalysisDamageDealtPage>(NavigationConstant.MatchAnalysisDamageDealtPage);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace LolApp.ViewModels
 
         public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.TryGetValue(Config.MatchParam, out Match match))
+            if (parameters.TryGetValue(NavigationConstant.MatchParam, out Match match))
             {
                 WinningTeam = new Team();
                 LosingTeam = new Team();
@@ -66,8 +66,8 @@ namespace LolApp.ViewModels
 
                     participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
                     participant.Champion = ChampionService.GetChampion(participant.ChampionId);
-                    participant.Spell1Icon = Utilis.GetSpell(participant.Spell1Id);
-                    participant.Spell2Icon = Utilis.GetSpell(participant.Spell2Id);
+                    participant.Spell1Icon = Utils.GetSpell(participant.Spell1Id);
+                    participant.Spell2Icon = Utils.GetSpell(participant.Spell2Id);
                     participant.Stats.TotalKillsProgress = (float) participant.Stats.Kills / (float) MostKills;
                     participant.Stats.TotalGoldEarnedProgress = (float) participant.Stats.GoldEarned / (float) MostGold;
                     participant.Stats.TotalDamageDealtProgress = (float) participant.Stats.TotalDamageDealt / (float) MostDamage;
