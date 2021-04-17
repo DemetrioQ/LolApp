@@ -3,9 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LolApp.Views.MatchBuildPage"
              Title="Build">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="HeaderLabelStyle">
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Margin="10" >
-            <Label Text="Final Build" FontAttributes="Bold" TextColor="Black" FontSize="20"/>
+            <Label Text="Final Build" Style="{StaticResource HeaderLabelStyle}"/>
             <CollectionView  VerticalOptions="Center" HeightRequest="40" HorizontalOptions="Center" ItemsSource="{Binding MainParticipant.Items}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" ItemSpacing="3"></LinearItemsLayout>
@@ -19,7 +28,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label Text="Runes" FontAttributes="Bold" TextColor="Black" FontSize="20"/>
+            <Label Text="Rune Build" Style="{StaticResource HeaderLabelStyle}"/>
             
             <Grid ColumnDefinitions="160,*">
                 

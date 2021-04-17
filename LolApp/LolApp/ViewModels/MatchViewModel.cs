@@ -13,7 +13,7 @@ using System.Text;
 
 namespace LolApp.ViewModels
 {
-    public class MatchViewModel : BaseViewModel, IInitialize
+    public class MatchViewModel : BaseViewModel, IInitialize, INavigatedAware
     {
         public Match Match { get; set; }
         public Summoner MainSummoner { get; set; }
@@ -27,21 +27,18 @@ namespace LolApp.ViewModels
         public int MostGold { get; set; }
         public int MostDamage { get; set; }
         public string ParticipantTeamColor { get; set; }
-        IChampionService ChampionService { get; }
         IRuneService RuneService { get; }
+        public bool IsBusy { get; set; }
+        public bool IsNotBusy => !IsBusy;
 
         public MatchViewModel(IPageDialogService alertService, IChampionService championService, IRuneService runeService) : base(alertService)
         {
-            ChampionService = championService;
             RuneService = runeService;
         }
 
         public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.TryGetValue(NavigationConstant.MatchParam, out Match match) && parameters.TryGetValue(NavigationConstant.SummonerParam, out Summoner summoner))
-            {
-                GetMatchData(match, summoner);
-            }
+
         }
         public void GetMatchData(Match match, Summoner summoner)
         {
@@ -92,10 +89,37 @@ namespace LolApp.ViewModels
                     participant.IsPlayer = true;
                     MainParticipant = participant;
                     RuneService.GetSlots(MainParticipant);
+
+                    if (WinningTeam.Participants.Contains(MainParticipant))
+                    {
+                        var tempWinning = Match.Teams.First(x => x.TeamId == MainParticipant.TeamId);
+                        WinningTeam.TowerKills = tempWinning.TowerKills;
+                        WinningTeam.BaronKills = tempWinning.BaronKills;
+                        WinningTeam.DragonKills = tempWinning.DragonKills;
+
+                        var tempLosing = Match.Teams.First(x => x.TeamId != tempWinning.TeamId);
+                        LosingTeam.TowerKills = tempLosing.TowerKills;
+                        LosingTeam.BaronKills = tempLosing.BaronKills;
+                        LosingTeam.DragonKills = tempLosing.DragonKills;
+                    }
+                    else
+                    {
+                        var tempLosing = Match.Teams.First(x => x.TeamId == MainParticipant.TeamId);
+                        LosingTeam.TowerKills = tempLosing.TowerKills;
+                        LosingTeam.BaronKills = tempLosing.BaronKills;
+                        LosingTeam.DragonKills = tempLosing.DragonKills;
+
+
+                        var tempWinning = Match.Teams.First(x => x.TeamId != tempLosing.TeamId);
+                        WinningTeam.TowerKills = tempWinning.TowerKills;
+                        WinningTeam.BaronKills = tempWinning.BaronKills;
+                        WinningTeam.DragonKills = tempWinning.DragonKills;
+                    }
+                    
                 }
 
                 participant.SummonerName = Match.ParticipantIdentities.Find(x => x.ParticipantId == participant.ParticipantId).Player.SummonerName;
-                participant.Champion = ChampionService.GetChampion(participant.ChampionId);
+                
                 participant.Spell1Icon = Utils.GetSpell(participant.Spell1Id);
                 participant.Spell2Icon = Utils.GetSpell(participant.Spell2Id);
                 participant.Stats.TotalKillsProgress = (float)participant.Stats.Kills / (float)MostKills;
@@ -103,6 +127,19 @@ namespace LolApp.ViewModels
                 participant.Stats.TotalDamageDealtProgress = (float)participant.Stats.TotalDamageDealt / (float)MostDamage;
             }
 
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.TryGetValue(NavigationConstant.MatchParam, out Match match) && parameters.TryGetValue(NavigationConstant.SummonerParam, out Summoner summoner))
+            {
+                GetMatchData(match, summoner);
+            }
         }
     }
 }

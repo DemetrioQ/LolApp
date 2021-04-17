@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Java.Text;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -38,6 +39,14 @@ namespace LolApp.Models
 
         [JsonPropertyName("gameDuration")]
         public int GameDuration { get; set; }
+        public string GameDurationTime
+        {
+            get
+            { 
+                return TimeSpan.FromSeconds(GameDuration).ToString();
+
+            }
+        }
 
         [JsonPropertyName("queueId")]
         public int QueueId { get; set; }
