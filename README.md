@@ -2,7 +2,7 @@
 
 This League Of Legends (LOL) App is a sample of how we can start to use Prism as a framework for .NET mobile applications. This project is sctructured with MVVM pattern and we call different riot games apis based in the mentioned framework.
 
-This App is built for people who play league of legend and want to see their game history, what they bought in their game, how many kill / death / assist they got in the game,what champions they used.
+This app is designed for people who play League of Legends and want to see their playing history, what they bought in their game, how many kills / kills / assists they got in the game, what champions they used, their rank in competitive.
 
 # Ranking Page
 ![image](https://user-images.githubusercontent.com/52639107/112684213-115d0e00-8e49-11eb-80e9-8fbcef36558a.png)
