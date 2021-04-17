@@ -9,10 +9,10 @@ namespace LolApp.Services
 {
     public interface IMatchApi
     {
-        [Get("matchlists/by-account/{accountId}")]
+        [Get("/matchlists/by-account/{accountId}?api_key={key}")]
         Task<HttpResponseMessage> GetMatches(string accountId, string key);
 
-        [Get("matches/{matchId}")]
+        [Get("/matches/{matchId}")]
         Task<HttpResponseMessage> GetMatchById(string matchId, string key);
     }
 }

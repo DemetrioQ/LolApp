@@ -15,12 +15,15 @@ namespace LolApp.ViewModels
 
         public List<SummonerLeagueDetail> SummonerDetailList {get;set;}
 
+        public MatchList SummonerMatches { get; set; }
+
         private ISummonerLeagueApiService _summonerLeagueApiServie;
-        public SummonerDetailViewModel(IPageDialogService pageDialogService, ISummonerLeagueApiService summonerLeagueApiService) : base(pageDialogService)
+        private IMatchApiService _matchApiService;
+        public SummonerDetailViewModel(IPageDialogService pageDialogService, ISummonerLeagueApiService summonerLeagueApiService, IMatchApiService matchApiService) : base(pageDialogService)
         {
             //GetSummonerCommand = new DelegateCommand(GetSummonerAsync);
             _summonerLeagueApiServie = summonerLeagueApiService;
-            
+            _matchApiService = matchApiService;
         }
 
         public void Initialize(INavigationParameters parameters)
@@ -31,6 +34,7 @@ namespace LolApp.ViewModels
             }
 
             GetSummonerLeague();
+            GetSummonerMatches();
         }
 
         private async void GetSummonerLeague()
@@ -40,6 +44,20 @@ namespace LolApp.ViewModels
                 var summonerDetail = await _summonerLeagueApiServie.GetSummonerLeagueAsync(Summoner.Id);
 
                 SummonerDetailList = summonerDetail;
+            }
+            else
+            {
+                await AlertService.DisplayAlertAsync("No internet connection", "No internet connection detected", "ok");
+            }
+        }
+
+        private async void GetSummonerMatches()
+        {
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            {
+                var summonerMatches = await _matchApiService.GetMatchesByAccountIdAsync(Summoner.AccountId);
+
+                SummonerMatches = summonerMatches;
             }
             else
             {

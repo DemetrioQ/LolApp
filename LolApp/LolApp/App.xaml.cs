@@ -16,6 +16,8 @@ namespace LolApp
     {
         public App(IPlatformInitializer plataformInitializer = null) : base(plataformInitializer) { }
 
+        
+
         protected override async void OnInitialized()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace LolApp
             var parameters = new NavigationParameters();
             parameters.Add(NavigationConstant.MatchParam, match);
             parameters.Add(NavigationConstant.SummonerParam, summoner);
+            
 
             //MatchTabbedPage
 
@@ -45,6 +48,7 @@ namespace LolApp
             containerRegistry.Register<IRankingApiService, RankingApiService>();
             containerRegistry.Register<IStatusApiService, StatusApiService>();
             containerRegistry.Register<ISerializerService, SerializerService>();
+            containerRegistry.Register<IMatchApiService, MatchApiService>();
             containerRegistry.RegisterSingleton<IChampionService, ChampionService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>(NavigationConstant.NavigationPage);
