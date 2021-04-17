@@ -14,3 +14,14 @@ This App is built for people who play league of legend and want to see their gam
 ![image](https://user-images.githubusercontent.com/52639107/112708035-e513b280-8e85-11eb-9702-1831e73a505d.png)
 
 
+Trello work flow:
+https://trello.com/b/imlULGMg/xamarinapp
+
+Mockups: 
+https://balsamiq.cloud/sopno7g/p5jd5g6 
+
+Team:
+Demetrio Quiñones - 1087977
+John Espinal - 1074864
+Victor Calderón -1072692
+
