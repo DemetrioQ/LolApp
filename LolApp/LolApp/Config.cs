@@ -20,7 +20,7 @@ namespace LolApp
         public const string LanStatusApiUrl = "https://la1.api.riotgames.com/lol/league/v4/grandmasterleagues/by-queue";
 
         //Summoner data endpoints of all regions
-        public const string LatinAmericaNorthMatchesApuUrl = "https://americas.api.riotgames.com/lol/match/v5/matches/";
+        public const string LatinAmericaNorthMatchesApiUrl = "https://la1.api.riotgames.com/lol/match/v4/";
         public const string LatinAmericaNorthLeagueApiUrl = "https://la1.api.riotgames.com/lol/league/v4/entries";
         public const string LatinAmericaNorthSummonerApiUrl = "https://la1.api.riotgames.com/lol/summoner/v4/summoners";
         public const string LatinAmericaSouthSummonerApiUrl = "https://la2.api.riotgames.com/lol/summoner/v4/summoners";

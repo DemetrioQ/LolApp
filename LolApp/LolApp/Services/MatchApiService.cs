@@ -19,7 +19,7 @@ namespace LolApp.Services
             throw new NotImplementedException();
         }
 
-        public Task<HttpResponseMessage> GetMatches(string puuid, string key)
+        public Task<HttpResponseMessage> GetMatches(string accountId, string key)
         {
             throw new NotImplementedException();
         }
