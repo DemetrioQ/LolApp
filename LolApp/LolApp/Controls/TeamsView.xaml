@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Grid RowDefinitions="20,25" ColumnDefinitions="Auto,Auto,*"  RowSpacing="0" Padding="0" Margin="2"
+<Grid RowDefinitions="20,25" ColumnDefinitions="Auto,Auto,*"  RowSpacing="0" Padding="0" Margin="0"
        xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        x:Class="LolApp.Controls.TeamsView">
-    <BoxView Color="Transparent" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2">
+    <BoxView Color="Transparent" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="2">
         <BoxView.Triggers>
             <DataTrigger TargetType="BoxView" Binding="{Binding IsPlayer}" Value="true">
-                <Setter Property="Color" Value="#FF3399"/>
+                <Setter Property="Color" Value="LightGray"/>
             </DataTrigger>
         </BoxView.Triggers>
     </BoxView>
-    <Frame CornerRadius="60"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" IsClippedToBounds="True">
+    <Frame CornerRadius="60"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Padding="0" Margin="0" IsClippedToBounds="True" HeightRequest="40" WidthRequest="40" HorizontalOptions="Center" VerticalOptions="Center">
             <Image Source="{Binding Champion.ChampionIcon}" Aspect="AspectFill" />
         </Frame>
-        <Frame CornerRadius="100" Grid.Row="1" Grid.Column="0" HeightRequest="20" Margin="25,5,0,0" Padding="0" BackgroundColor="black">
+    <Frame CornerRadius="100" Grid.Row="1" Grid.Column="0" HeightRequest="20" Margin="25,5,0,0" Padding="0" BackgroundColor="black" WidthRequest="20"  IsClippedToBounds="True">
             <Frame.Content>
                 <Label Text="{Binding Stats.ChampLevel}"  FontSize="14" TextColor="White" FontAttributes="Bold" Margin="0" BackgroundColor="Transparent" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"></Label>
             </Frame.Content>
         </Frame>
-        <Image Source="{Binding Spell1Icon}" Grid.Column="1" Grid.Row="0" HeightRequest="20"></Image>
+        <Image Source="{Binding Spell1Icon}" Grid.Column="1" Grid.Row="0" HeightRequest="20" ></Image>
         <Image Source="{Binding Spell2Icon}" Grid.Column="1" Grid.Row="1" HeightRequest="20"></Image>
 
         <Label Text="{Binding SummonerName}" Grid.Column="2" Grid.Row="0"></Label>
@@ -31,4 +31,19 @@
             </MultiBinding>
         </Label.Text>
     </Label>
+    
+    
+    <CollectionView Margin="0" Grid.Row="0" Grid.Column="3" HeightRequest="22"  ItemsSource="{Binding Items}">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="3"></LinearItemsLayout>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame  CornerRadius="5" Padding="0" Margin="0" HorizontalOptions="Center" WidthRequest="20" VerticalOptions="Center" BackgroundColor="Gray">
+                    <Image Aspect="AspectFill" Source="{Binding .}"/>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    
 </Grid>

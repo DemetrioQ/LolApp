@@ -37,7 +37,7 @@ namespace LolApp
 
             //MatchTabbedPage
 
-            await NavigationService.NavigateAsync($"Nav/{NavigationConstant.SummonerPage}");
+            await NavigationService.NavigateAsync($"{NavigationConstant.NavigationPage}/{NavigationConstant.MatchTabbedPage}", parameters);
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -46,10 +46,10 @@ namespace LolApp
             containerRegistry.Register<ISummonerLeagueApiService, SummonerLeagueApiService>();
             containerRegistry.Register<ISummonerApiService, SummonerApiService>();
             containerRegistry.Register<IRankingApiService, RankingApiService>();
-            containerRegistry.Register<IStatusApiService, StatusApiService>();
             containerRegistry.Register<ISerializerService, SerializerService>();
             containerRegistry.Register<IMatchApiService, MatchApiService>();
             containerRegistry.RegisterSingleton<IChampionService, ChampionService>();
+            containerRegistry.RegisterSingleton<IRuneService, RuneService>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>(NavigationConstant.NavigationPage);
             containerRegistry.RegisterForNavigation<MainTabbedPage>(NavigationConstant.MainTabbedPage);
@@ -59,7 +59,6 @@ namespace LolApp
             containerRegistry.RegisterForNavigation<RankingPage, RankingViewModel>(NavigationConstant.RankingPage);
             containerRegistry.RegisterForNavigation<SummonerPage, SummonerViewModel>(NavigationConstant.SummonerPage);
             containerRegistry.RegisterForNavigation<SummonerDetailPage, SummonerDetailViewModel>(NavigationConstant.SummonerDetailPage);
-            containerRegistry.RegisterForNavigation<GrandMasterPage, GrandMasterViewModel>(NavigationConstant.GrandMasterPage);
 
             containerRegistry.RegisterForNavigation<MatchTotalPage>(NavigationConstant.MatchTotalPage);
             containerRegistry.RegisterForNavigation<MatchBuildPage>(NavigationConstant.MatchBuildPage);

@@ -4,10 +4,67 @@
              x:Class="LolApp.Views.MatchBuildPage"
              Title="Build">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="10" >
+            <Label Text="Final Build" FontAttributes="Bold" TextColor="Black" FontSize="20"/>
+            <CollectionView  VerticalOptions="Center" HeightRequest="40" HorizontalOptions="Center" ItemsSource="{Binding MainParticipant.Items}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="3"></LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame  CornerRadius="5" Padding="0" HorizontalOptions="Center" WidthRequest="40" VerticalOptions="Center" BackgroundColor="Gray">
+                            <Image Aspect="AspectFill" Source="{Binding .}"/>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Runes" FontAttributes="Bold" TextColor="Black" FontSize="20"/>
+            
+            <Grid ColumnDefinitions="160,*">
+                
+            <CollectionView ItemsSource="{Binding MainParticipant.MainRunes}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="0">
+                    <CollectionView.Header>
+                        <Grid ColumnDefinitions="35,*" Margin="3">
+                            <Image Source="{Binding MainParticipant.MainRuneRoot.Icon}" Grid.Column="0" HeightRequest="35" WidthRequest="30"/>
+                            <Label Text="{Binding MainParticipant.MainRuneRoot.Name}" Grid.Column="1" VerticalTextAlignment="Center" TextColor="blue" FontSize="16"/>
+                        </Grid>
+                    </CollectionView.Header>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"></LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="*" ColumnDefinitions="Auto,Auto">
+                            <Image Source="{Binding RuneIcon}" Grid.Column="0" Grid.Row="0"   HeightRequest="35" WidthRequest="35"/>
+                            <Label Text="{Binding Name}" Grid.Column="1" TextColor="Black" FontSize="16" VerticalTextAlignment="Center"  Grid.Row="0"/>
+                        </Grid>
+                       
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+                <CollectionView ItemsSource="{Binding MainParticipant.SecondaryRunes}" HorizontalOptions="Center" VerticalOptions="Center" Grid.Column="1">
+                    <CollectionView.Header>
+                        <Grid ColumnDefinitions="35,*" Margin="3">
+                            <Image Source="{Binding MainParticipant.SecondaryRuneRoot.Icon}" Grid.Column="0" HeightRequest="35" WidthRequest="30"/>
+                            <Label Text="{Binding MainParticipant.SecondaryRuneRoot.Name}" Grid.Column="1" VerticalTextAlignment="Center" TextColor="blue" FontSize="16"/>
+                        </Grid>
+                    </CollectionView.Header>
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="3"></LinearItemsLayout>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="*" ColumnDefinitions="Auto,Auto">
+                                <Image Source="{Binding RuneIcon}" Grid.Column="0" Grid.Row="0"   HeightRequest="35" WidthRequest="35"/>
+                                <Label Text="{Binding Name}" Grid.Column="1" TextColor="Black" FontSize="18" VerticalTextAlignment="Center"  Grid.Row="0"/>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

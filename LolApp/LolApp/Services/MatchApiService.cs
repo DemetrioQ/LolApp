@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,20 @@ namespace LolApp.Services
             LolIconsApiService = lolIconsApiService;
         }
 
-        public Task<HttpResponseMessage> GetMatchById(string matchId, string key)
+        public async Task<Match> GetMatchByIdAsync(string matchId, string key)
         {
-            throw new NotImplementedException();
+            Match match = null;
+            var refitClient = RestService.For<IMatchApi>(Config.LatinAmericaNorthMatchesApiUrl);
+
+            var rankingResponse = await refitClient.GetMatchByIdAsync(matchId, Config.ApiKey);
+
+            if (rankingResponse.IsSuccessStatusCode)
+            {
+                var jsonRanking = await rankingResponse.Content.ReadAsStringAsync();
+                match = JsonConvert.DeserializeObject<Match>(jsonRanking);
+                
+            }
+            return match;
         }
 
 

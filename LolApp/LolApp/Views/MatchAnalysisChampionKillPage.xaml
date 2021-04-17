@@ -5,7 +5,7 @@
              Title="Champion Kills"
              x:Name="ChampionKillsPage">
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *" ColumnDefinitions="*,*" Margin="10">
+        <Grid RowDefinitions="Auto, *" ColumnDefinitions="*,*" Margin="2" Padding="0">
             <Label Grid.Column="0" Grid.Row="0" HorizontalTextAlignment="Center">
                 <Label.FormattedText>
                     <FormattedString>
@@ -27,14 +27,26 @@
 
             <CollectionView
                 ItemsSource="{Binding AnalysisKills}"
+                Margin="0"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
+
                 >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="1" Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <ContentView>
-                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,*" Margin="2">
+                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,*" Margin="0" Padding="0">
+                                <BoxView Color="Transparent" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                    <BoxView.Triggers>
+                                        <DataTrigger TargetType="BoxView" Binding="{Binding IsPlayer}" Value="true">
+                                            <Setter Property="Color" Value="LightGray"/>
+                                        </DataTrigger>
+                                    </BoxView.Triggers>
+                                </BoxView>
                                 <Frame CornerRadius="100"  Grid.Column="0" Padding="0" Grid.Row="0" Grid.RowSpan="2" IsClippedToBounds="True" HeightRequest="40" WidthRequest="40" Margin="0,0,3,0">
                                     <Image Source="{Binding Champion.ChampionIcon}" Aspect="AspectFill" />
                                 </Frame>
