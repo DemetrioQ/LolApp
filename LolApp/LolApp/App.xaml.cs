@@ -29,8 +29,8 @@ namespace LolApp
             response = strm.ReadToEnd();
             Summoner summoner = JsonConvert.DeserializeObject<Summoner>(response);
             var parameters = new NavigationParameters();
-            parameters.Add(Config.MatchParam, match);
-            parameters.Add(Config.SummonerParam, summoner);
+            parameters.Add(NavigationConstant.MatchParam, match);
+            parameters.Add(NavigationConstant.SummonerParam, summoner);
 
             //MatchTabbedPage
 
