@@ -8,12 +8,23 @@
     <ContentPage.Content>
         <StackLayout Margin="0" Padding="0">
             <CollectionView
-                
+                Margin="0"
                 ItemsSource="{Binding WinningTeam.Participants}"
-                
                 >
                 <CollectionView.Header>
-                    <Label Text="Win" />
+                    <Grid ColumnDefinitions="50, *, Auto">
+                        <BoxView Color="LightBlue" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <Label Text="Win" TextColor="Blue" Grid.Column="0" FontSize="17" VerticalTextAlignment="Center" Margin="5,0,0,0"/>
+                        <Label Grid.Column="1" VerticalTextAlignment="Center">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{} {0}/{1}/{2}">
+                                    <Binding Path="WinningTeam.Kills"/>
+                                    <Binding Path="WinningTeam.Deaths"/>
+                                    <Binding Path="WinningTeam.Assists"/>
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </Grid>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -23,11 +34,23 @@
             </CollectionView>
             
             <CollectionView
+                Margin="0"
                 ItemsSource="{Binding LosingTeam.Participants}"
-                
                 >
                  <CollectionView.Header>
-                    <Label Text="Loss"/>
+                    <Grid ColumnDefinitions="50, *, Auto">
+                        <BoxView Color="LightPink" Grid.Column="0" Grid.ColumnSpan="3"/>
+                        <Label Text="Loss" TextColor="Red"  Grid.Column="0"  FontSize="17" VerticalTextAlignment="Center" Margin="5,0,0,0"/>
+                        <Label Grid.Column="1"  VerticalTextAlignment="Center">
+                            <Label.Text>
+                                <MultiBinding StringFormat="{} {0}/{1}/{2}">
+                                    <Binding Path="LosingTeam.Kills"/>
+                                    <Binding Path="LosingTeam.Deaths"/>
+                                    <Binding Path="LosingTeam.Assists"/>
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </Grid>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

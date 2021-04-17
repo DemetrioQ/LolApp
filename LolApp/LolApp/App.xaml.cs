@@ -23,10 +23,14 @@ namespace LolApp
             StreamReader strm = new StreamReader(Android.App.Application.Context.Assets.Open("MatchTest.json"));
             var response = strm.ReadToEnd();
 
+            
             Match match = JsonConvert.DeserializeObject<Match>(response);
-
+            strm = new StreamReader(Android.App.Application.Context.Assets.Open("PlayerTest.json"));
+            response = strm.ReadToEnd();
+            Summoner summoner = JsonConvert.DeserializeObject<Summoner>(response);
             var parameters = new NavigationParameters();
-            parameters.Add(NavigationConstant.MatchParam, match);
+            parameters.Add(Config.MatchParam, match);
+            parameters.Add(Config.SummonerParam, summoner);
 
             //MatchTabbedPage
 
