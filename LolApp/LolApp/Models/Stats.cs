@@ -114,6 +114,9 @@ namespace LolApp.Models
         [JsonPropertyName("kills")]
         public int Kills { get; set; }
 
+
+        public string KDA => Deaths == 0 ? "Perfect" : Math.Round(((decimal)(Kills + Assists) / (decimal)Deaths), 2).ToString();
+
         [JsonPropertyName("deaths")]
         public int Deaths { get; set; }
 

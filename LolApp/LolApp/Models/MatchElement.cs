@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace LolApp.Models
@@ -18,7 +19,7 @@ namespace LolApp.Models
 
     public class MatchList
     {
-        public IList<MatchElement> Matches { get; set; }
+        public ObservableCollection<MatchElement> Matches { get; set; }
         public int StartIndex { get; set; }
         public int EndIndex { get; set; }
         public int TotalGames { get; set; }

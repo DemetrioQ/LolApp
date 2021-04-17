@@ -18,7 +18,7 @@ namespace LolApp.Services
             LolIconsApiService = lolIconsApiService;
         }
 
-        public async Task<Match> GetMatchByIdAsync(string matchId, string key)
+        public async Task<Match> GetMatchByIdAsync(string matchId)
         {
             Match match = null;
             var refitClient = RestService.For<IMatchApi>(Config.LatinAmericaNorthMatchesApiUrl);

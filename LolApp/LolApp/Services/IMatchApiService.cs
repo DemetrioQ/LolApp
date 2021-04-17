@@ -10,6 +10,6 @@ namespace LolApp.Services
     public interface IMatchApiService
     {
         Task<MatchList> GetMatchesByAccountIdAsync(string accountId);
-        Task<Match> GetMatchByIdAsync(string matchId, string key);
+        Task<Match> GetMatchByIdAsync(string matchId);
     }
 }
