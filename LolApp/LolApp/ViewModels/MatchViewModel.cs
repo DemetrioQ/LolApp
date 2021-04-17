@@ -36,7 +36,7 @@ namespace LolApp.ViewModels
 
         public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.TryGetValue(Config.MatchParam, out Match match) && parameters.TryGetValue(Config.SummonerParam, out Summoner summoner))
+            if (parameters.TryGetValue(NavigationConstant.MatchParam, out Match match) && parameters.TryGetValue(NavigationConstant.SummonerParam, out Summoner summoner))
             {
                 Match = match;
                 MainSummoner = summoner;
