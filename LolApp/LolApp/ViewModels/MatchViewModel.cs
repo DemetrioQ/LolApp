@@ -13,7 +13,7 @@ using System.Text;
 
 namespace LolApp.ViewModels
 {
-    public class MatchViewModel : BaseViewModel, IInitialize
+    public class MatchViewModel : BaseViewModel, IInitialize, INavigatedAware
     {
         public Match Match { get; set; }
         public Summoner MainSummoner { get; set; }
@@ -27,21 +27,18 @@ namespace LolApp.ViewModels
         public int MostGold { get; set; }
         public int MostDamage { get; set; }
         public string ParticipantTeamColor { get; set; }
-        IChampionService ChampionService { get; }
         IRuneService RuneService { get; }
+        public bool IsBusy { get; set; }
+        public bool IsNotBusy => !IsBusy;
 
         public MatchViewModel(IPageDialogService alertService, IChampionService championService, IRuneService runeService) : base(alertService)
         {
-            ChampionService = championService;
             RuneService = runeService;
         }
 
         public void Initialize(INavigationParameters parameters)
         {
-            if (parameters.TryGetValue(NavigationConstant.MatchParam, out Match match) && parameters.TryGetValue(NavigationConstant.SummonerParam, out Summoner summoner))
-            {
-                GetMatchData(match, summoner);
-            }
+
         }
         public void GetMatchData(Match match, Summoner summoner)
         {
@@ -130,6 +127,19 @@ namespace LolApp.ViewModels
                 participant.Stats.TotalDamageDealtProgress = (float)participant.Stats.TotalDamageDealt / (float)MostDamage;
             }
 
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            if (parameters.TryGetValue(NavigationConstant.MatchParam, out Match match) && parameters.TryGetValue(NavigationConstant.SummonerParam, out Summoner summoner))
+            {
+                GetMatchData(match, summoner);
+            }
         }
     }
 }
